@@ -1,0 +1,41 @@
+<div [formGroup]="form" class="exercise-form">
+  <div class="row">
+    <div class="col-lg-9 order-1 order-lg-0">
+      <div class="col-12 d-flex my-3">
+        <img src="/assets/images/collage.PNG" />
+        <mat-form-field class="ml-2 col">
+          <input matInput type="text" id="title" formControlName="title" placeholder="[Titel werkblad voor de lesgever] (optioneel)" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <h4>Voeg vraag toe (optioneel)</h4>
+          <label [hidden]="questionUrl !== undefined" for="question">
+            <img src="/assets/images/audio.svg" />
+          </label>
+          <mat-icon [hidden]="questionUrl === undefined">check</mat-icon>
+          <input class="hidden" id="question" formControlName="question" type="file" (change)="upload($event, 'question')" />
+        </div>
+      </div>
+
+      <div class="col">
+        <mat-radio-group id="answerCount" formControlName="answerCount">
+          <mat-radio-button class="mx-3" checked value="4">4</mat-radio-button>
+          <mat-radio-button class="mx-3" value="6">6</mat-radio-button>
+          <mat-radio-button class="mx-3" value="9">9</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="col">
+        <h4>Antwoordmogelijkheden</h4>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3" *ngFor="let answer of answers; let i = index">
+          <app-answer id="answer-{{ i }}" letter="{{ letters[i] }}" (answerChanged)="updateAnswer(i, $event)"></app-answer>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 d-flex order-0 order-lg-1 justify-content-center">
+      <app-aspects-exercise [categories]="categories$ | async" (aspects)="submit($event)"></app-aspects-exercise>
+    </div>
+  </div>
+</div>

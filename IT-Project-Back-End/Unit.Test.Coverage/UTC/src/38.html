@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.business\services\categoryservice.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using LiminoAPI.Business.DTO_s;
+using LiminoAPI.Data.Models;
+using LiminoAPI.Data.Repositories.Interfaces;
+
+namespace LiminoAPI.Business.Services
+{
+    public class CategoryService : ICategoryService
+    {
+        private readonly IBaseRepository&lt;Category&gt; _repo;
+
+        public CategoryService(IBaseRepository&lt;Category&gt; repo)
+        {
+            _repo = repo;
+        }
+
+        public CategoryService()
+        {
+            
+        }
+
+        public IEnumerable&lt;CategoryDTO&gt; GetAllCategories()
+        {
+            return MapEntityListToDTOList(_repo.GetAll());
+        }
+
+        public IEnumerable&lt;CategoryDTO&gt; GetCategoriesByType(string type)
+        {
+            switch (type.ToLower())
+            {
+                case &quot;audio&quot;:
+                case &quot;video&quot;:
+                case &quot;conversation&quot;:
+                    return MapEntityListToDTOList(
+                        _repo.GetAllWhere(category =&gt; category.CategoryType.ToLower().Equals(type.ToLower())));
+                default:
+                    throw new InvalidEnumArgumentException(type + &quot; is not known type&quot;);
+            }
+        }
+
+        private static IEnumerable&lt;CategoryDTO&gt; MapEntityListToDTOList(IEnumerable&lt;Category&gt; categories)
+        {
+            return categories.Select(category =&gt; new CategoryDTO
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ImageUrl = category.ImageUrl,
+                CategoryType = category.CategoryType
+            }).ToList();
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[14,9,14,63,1],[15,9,15,10,1],[16,13,16,26,1],[17,9,17,10,1],[19,9,19,33,0],[20,9,20,10,0],[22,9,22,10,0],[25,9,25,10,1],[26,13,26,59,1],[27,9,27,10,1],[30,9,30,10,1],[31,13,31,36,1],[36,21,37,55,1],[37,55,37,109,0],[37,109,37,112,1],[36,21,37,112,1],[39,21,39,89,1],[41,9,41,10,1],[44,9,44,10,1],[45,13,45,50,1],[45,50,51,14,1],[51,14,51,25,1],[45,13,51,25,1],[52,9,52,10,1]]);
+    </script>
+  </body>
+</html>

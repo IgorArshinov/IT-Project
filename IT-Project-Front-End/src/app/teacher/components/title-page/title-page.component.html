@@ -1,0 +1,33 @@
+<div [formGroup]="form" class="exercise-form">
+  <div class="row">
+    <div class="col-lg-9 order-1 order-lg-0">
+      <div class="col-12 d-flex my-3">
+        <img src="/assets/images/titlepage.JPG" />
+        <mat-form-field class="ml-2 col">
+          <input matInput type="text" id="title" formControlName="title" placeholder="Typ hier de titel van je oefenreeks" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label [hidden]="questionUrl !== undefined" for="question">
+            Voeg de ingesproken titel + een omschrijving van de inhoud in: "In deze oefening leer je ...":
+            <img src="/assets/images/audio.svg" />
+          </label>
+          <mat-icon [hidden]="questionUrl === undefined">check</mat-icon>
+          <input class="hidden" id="question" formControlName="question" type="file" (change)="upload($event, 'question')" />
+        </div>
+      </div>
+
+      <div class="col">
+        <label for="image">
+          Voeg je afbeelding in
+          <img mat-card-image [src]="imageUrl !== undefined ? '/assets/' + imageUrl : '/assets/images/upload-placeholder.png'" />
+        </label>
+        <input class="hidden" id="image" formControlName="image" type="file" (change)="upload($event, 'image')" />
+      </div>
+    </div>
+    <div class="col-lg-3 d-flex order-0 order-lg-1 justify-content-center">
+      <app-aspects-exercise [categories]="categories$ | async" (aspects)="submit($event)"></app-aspects-exercise>
+    </div>
+  </div>
+</div>

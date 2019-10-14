@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.data\appdbcontext.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using LiminoAPI.Data.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace LiminoAPI.Data
+{
+    public class AppDbContext: DbContext
+    {
+        public DbSet&lt;Audio&gt; Audios { get; set; }
+        public DbSet&lt;Category&gt; Categories { get; set; }
+        public DbSet&lt;Video&gt; Videos { get; set; }
+        public DbSet&lt;Exercise&gt; Exercises { get; set; }
+        public DbSet&lt;Answer&gt; Answers { get; set; }
+
+        public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options): base (options)
+        {
+            // Empty constructor necessary
+        }
+        protected override void OnModelCreating (ModelBuilder builder)
+        {
+            var food = new Category {CategoryType = &quot;Video&quot;, Id = 1, ImageUrl = &quot;imageUrl1&quot;, Name = &quot;food&quot;};
+            var traffic = new Category {CategoryType = &quot;Audio&quot;, Id = 2, ImageUrl = &quot;imageUrl2&quot;, Name = &quot;traffic&quot;};
+            var drinks = new Category {CategoryType = &quot;Audio&quot;, Id = 3, ImageUrl = &quot;imageUrl3&quot;, Name = &quot;drinks&quot;};
+
+            var answer1 = new Answer {Id = 1, ExerciseId = 1, AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+            var answer2 = new Answer {Id = 2,ExerciseId = 1, AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+            var answer3 = new Answer { Id = 3 ,ExerciseId = 1, AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+            
+            var answer4 = new Answer {Id = 4,  ExerciseId = 2, AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+            var answer5 = new Answer {Id = 5, ExerciseId = 2, AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+            var answer6 = new Answer { Id = 6, ExerciseId = 2, AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+            
+            var answer7 = new Answer {Id = 7, ExerciseId = 3, AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+            var answer8 = new Answer {Id = 8,ExerciseId = 3, AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+            var answer9 = new Answer { Id = 9,ExerciseId = 3, AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+            
+
+            builder.Entity&lt;Category&gt;().HasData(food, traffic, drinks);
+            
+            builder.Entity&lt;Audio&gt;().HasData(
+                new Audio
+                {
+                    CategoryId = 1,
+                    ImageUrl = &quot;imageUrl4&quot;,
+                    Id = 1,
+                    Name = &quot;Dit is een banaan&quot;,
+                    FragmentUrl = &quot;audioUrl1&quot;
+                },
+                new Audio
+                {
+                    CategoryId = 1,
+                    ImageUrl = &quot;imageUrl7&quot;,
+                    Id = 2,
+                    Name = &quot;Dit is een appel&quot;,
+                    FragmentUrl = &quot;audioUrl3&quot;
+                },
+                new Audio
+                {
+                    CategoryId = 2,
+                    ImageUrl = &quot;imageUrl5&quot;,
+                    Id = 3,
+                    Name = &quot;welke bus moet ik nemen?&quot;,
+                    FragmentUrl = &quot;audioUrl2&quot;
+                },
+                new Audio
+                {
+                    CategoryId = 2,
+                    ImageUrl = &quot;imageUrl8&quot;,
+                    Id = 4,
+                    Name = &quot;hoe neem ik een taxi?&quot;,
+                    FragmentUrl = &quot;audioUrl2&quot;
+                },
+                new Audio
+                {
+                    CategoryId = 3,
+                    ImageUrl = &quot;imageUrl5&quot;,
+                    Id = 5,
+                    Name = &quot;Mag ik een glas water?&quot;,
+                    FragmentUrl = &quot;audioUrl3&quot;
+                }
+            );
+            builder.Entity&lt;Video&gt;().HasData(
+                new Video
+                {
+                    CategoryId = 1,
+                    Id = 1,
+                    Name = &quot;Video van een banaan&quot;,
+                    VideoUrl = &quot;VideoUrl1&quot;
+                },
+                new Video
+                {
+                    CategoryId = 1,
+                    Id = 4,
+                    Name = &quot;Video van een appel&quot;,
+                    VideoUrl = &quot;VideoUrl2&quot;
+                },
+                new Video
+                {
+                    CategoryId = 2,
+                    Id = 2,
+                    Name = &quot;Video van een bus&quot;,
+                    VideoUrl = &quot;VideoUrl2&quot;
+                },
+                new Video
+                {
+                    CategoryId = 3,
+                    Id = 3,
+                    Name = &quot;Video van een glas water&quot;,
+                    VideoUrl = &quot;VideoUrl3&quot;
+                }
+            );
+            builder.Entity&lt;Answer&gt;().HasData(answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9);
+            builder.Entity&lt;Exercise&gt;().HasData(
+                new Exercise
+                {
+                    Id = 1,
+                    Type = &quot;Collage&quot;,
+                    CategoryId = 1,
+                    Name = &quot;First Question&quot;,
+                    QuestionUrl = &quot;questionUrl&quot;,
+                    VideoUrl = &quot;videoUrl&quot;
+                },
+                new Exercise
+                {
+                    Id = 2,
+                    Type = &quot;True Or False&quot;,
+                    CategoryId = 2,
+                    Name = &quot;Second Question&quot;,
+                    QuestionUrl = &quot;questionUrl2&quot;,
+                    VideoUrl = &quot;videoUrl2&quot;
+                },
+                new Exercise
+                {
+                    Id = 3,
+                    Type = &quot;Multiple Choice&quot;,
+                    CategoryId = 3,
+                    Name = &quot;Second Question&quot;,
+                    QuestionUrl = &quot;questionUrl3&quot;,
+                    VideoUrl = &quot;videoUrl3&quot;
+                }
+            );
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,38,8,42,0],[8,43,8,47,0],[9,45,9,49,0],[9,50,9,54,0],[10,38,10,42,0],[10,43,10,47,0],[11,44,11,48,0],[11,49,11,53,0],[12,40,12,44,0],[12,45,12,49,0],[14,70,14,84,0],[15,9,15,10,0],[17,9,17,10,0],[19,9,19,10,0],[20,13,20,109,0],[21,13,21,115,0],[22,13,22,113,0],[24,13,24,126,0],[25,13,25,125,0],[26,13,26,126,0],[28,13,28,127,0],[29,13,29,126,0],[30,13,30,126,0],[32,13,32,126,0],[33,13,33,125,0],[34,13,34,125,0],[37,13,37,71,0],[39,13,80,15,0],[81,13,110,15,0],[111,13,111,127,0],[112,13,140,15,0],[141,9,141,10,0]]);
+    </script>
+  </body>
+</html>

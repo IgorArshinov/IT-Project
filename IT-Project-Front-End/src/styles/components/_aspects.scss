@@ -1,0 +1,13 @@
+.aspects {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    border: 0.1em solid $brand-3;
+    align-items: center;
+    padding: 1.5em 2.5em;
+
+    h5 {
+      margin: 0;
+    }
+  }
+}

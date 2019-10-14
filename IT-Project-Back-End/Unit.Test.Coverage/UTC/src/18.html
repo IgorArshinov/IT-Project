@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi\controllers\exercisecontroller.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.ComponentModel;
+using LiminoAPI.Business;
+using LiminoAPI.Business.Services;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+
+namespace LiminoAPI.Controllers
+{
+    [Route(&quot;api/exercises&quot;)]
+    public class ExerciseController : ControllerBase
+    {
+        private readonly IExerciseService _service;
+
+        public ExerciseController(IExerciseService service)
+        {
+            _service = service;
+        }
+
+        [HttpGet(&quot;{id}&quot;)]
+        public IActionResult GetExerciseById(long id)
+        {
+            var response = new ResponseObject();
+            try
+            {
+                response.Data = _service.GetById(id);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public IActionResult GetExercises(long? categoryId, string type = &quot;all&quot;)
+        {
+            try
+            {
+                var response = new ResponseObject
+                {
+                    Data = type.ToLower().Equals(&quot;all&quot;)
+                        ? _service.GetAllForCategoryId(categoryId)
+                        : _service.GetAllExercisesByTypeAndCategory(type, categoryId)
+                };
+                return Ok(response);
+            }  catch (InvalidEnumArgumentException exception){
+                return BadRequest(exception.Message);
+            }
+        }
+        
+        [HttpPost]
+        public IActionResult PostExercise([FromBody] ResponseObject responseObject)
+        {            
+            if (responseObject == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var json = JsonConvert.SerializeObject(responseObject.Data);
+            var exerciseDTO = JsonConvert.DeserializeObject&lt;ExerciseDTO&gt;(json);
+
+            _service.Add(exerciseDTO);
+            return Ok(exerciseDTO);
+        }
+
+        [HttpDelete(&quot;{id}&quot;)]
+        public IActionResult DeleteExercise(long id)
+        {
+            try
+            {
+                _service.Delete(id);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult UpdateExercise([FromBody] ResponseObject responseObject)
+        {
+            var json = JsonConvert.SerializeObject(responseObject.Data);
+            var exerciseDTO = JsonConvert.DeserializeObject&lt;ExerciseDTO&gt;(json);
+            
+            try
+            {
+                _service.Put(exerciseDTO);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+            return Ok(exerciseDTO);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[15,9,15,60,1],[16,9,16,10,1],[17,13,17,32,1],[18,9,18,10,1],[22,9,22,10,1],[23,13,23,49,1],[25,13,25,14,1],[26,17,26,54,1],[27,13,27,14,1],[28,13,28,40,1],[29,13,29,14,1],[30,17,30,54,1],[32,13,32,33,1],[33,9,33,10,1],[37,9,37,10,1],[39,13,39,14,1],[40,17,45,19,1],[46,17,46,37,1],[47,16,47,62,1],[47,62,47,63,1],[48,17,48,54,1],[50,9,50,10,1],[54,9,54,10,1],[55,13,55,40,1],[56,13,56,14,1],[57,17,57,37,1],[60,13,60,37,1],[61,13,61,14,1],[62,17,62,47,1],[64,13,64,73,1],[65,13,65,80,1],[67,13,67,39,1],[68,13,68,36,1],[69,9,69,10,1],[73,9,73,10,1],[75,13,75,14,1],[76,17,76,37,1],[77,13,77,14,1],[78,13,78,40,1],[79,13,79,14,1],[80,17,80,54,1],[82,13,82,25,1],[83,9,83,10,1],[87,9,87,10,1],[88,13,88,73,1],[89,13,89,80,1],[92,13,92,14,1],[93,17,93,43,1],[94,13,94,14,1],[95,13,95,40,0],[96,13,96,14,0],[97,17,97,54,0],[99,13,99,36,1],[100,9,100,10,1]]);
+    </script>
+  </body>
+</html>

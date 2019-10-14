@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-2 col-lg-3 d-flex flex-column">
+    <div class="instructions-wrapper">
+    </div>
+    <div class="question-icon">
+      <img src="/assets/images/audio.svg" (click)="playQuestion()"/>
+    </div>
+  </div>
+  <div class="col-9 col-md-8 col-lg-9">
+    <div class="row">
+      <div class="col-12" *ngIf="imageUrl">
+        <img [src]="'assets/' + imageUrl">
+      </div>
+      <div class="col-6 col-lg-4" *ngFor="let answer of exercise.answers">
+        <app-trueorfalse-item (play)="play($event)" [answer]="answer"></app-trueorfalse-item>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-nav-home></app-nav-home>

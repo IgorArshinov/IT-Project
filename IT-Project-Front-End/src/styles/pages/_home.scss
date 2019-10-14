@@ -1,0 +1,49 @@
+// ----------------------------------------------------------------------
+// Home
+// ----------------------------------------------------------------------
+
+%menu-container {
+  margin-top: 2em;
+
+  @include desktop {
+    margin-top: 5em;
+  }
+}
+
+%menu-card {
+  @extend %link-card;
+
+  img {
+    width: $menu-card-btn-img-size;
+    height: $menu-card-btn-img-size;
+
+    @include tablet {
+      width: $menu-card-btn-img-size-desktop;
+      height: $menu-card-btn-img-size-desktop;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.home {
+  &-menu-container {
+    @extend %menu-container;
+    &-teacher {
+      @extend %menu-container;
+      justify-content: space-evenly;
+    }
+  }
+
+  &-menu-card {
+    @extend %menu-card;
+    &-teacher {
+      @extend %menu-card;
+      background-color: #757575;
+      text-align: center;
+      height: 100%;
+      justify-content: center;
+    }
+  }
+}

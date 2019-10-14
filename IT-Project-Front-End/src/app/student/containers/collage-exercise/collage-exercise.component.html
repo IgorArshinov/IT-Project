@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-2 col-lg-3 d-flex flex-column">
+    <div class="instructions-wrapper">
+      <img src="/assets/images/speaker.svg" alt="speaker icon" />
+      <img src="/assets/images/click.svg" alt="click icon" />
+    </div>
+    <div class="collage-icon">
+      <img src="/assets/images/audio.svg" class="" (click)="playQuestion()" />
+    </div>
+  </div>
+  <div class="col-9 col-md-8 col-lg-9 collage-container">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-lg-3 collage-wrapper" *ngFor="let answer of exercise?.answers">
+        <app-collage-item (play)="play($event)" [answer]="answer"></app-collage-item>
+      </div>
+    </div>
+  </div>
+</div>
+<app-nav-home></app-nav-home>

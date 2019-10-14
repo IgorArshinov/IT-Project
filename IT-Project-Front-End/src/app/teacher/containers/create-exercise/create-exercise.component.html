@@ -1,0 +1,35 @@
+<app-title-page
+  *ngIf="type === types.titelblad"
+  (exercise)="submit($event)"
+  >
+</app-title-page>
+
+<app-multi-video
+  *ngIf="type === types.multiplevideo"
+  (exercise)="submit($event)"
+  >
+</app-multi-video>
+
+<app-multi-audio
+  *ngIf="type === types.multipleaudio"
+  (exercise)="submit($event)"
+>
+</app-multi-audio>
+
+<app-collage
+  *ngIf="type === types.collage"
+  (exercise)="submit($event)"
+>
+</app-collage>
+
+<app-trueorfalse-audio
+  *ngIf="type === types.trueorfalseaudio"
+  (exercise)="submit($event)">
+
+</app-trueorfalse-audio>
+
+<app-trueorfalse-video
+  *ngIf="type === types.trueorfalsevideo"
+  (exercise)="submit($event)">
+
+</app-trueorfalse-video>

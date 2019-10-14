@@ -1,0 +1,27 @@
+<div class="home-container">
+  <div class="row justify-content-center">
+    <div class="logo-container">
+      <img src="/assets/images/Chalkboard-with-Stationary.jpg" alt="limino-logo" [ngStyle]="{borderRadius: '2em'}"/>
+    </div>
+  </div>
+
+  <div class="row home-menu-container-teacher">
+    <div class="col-12 col-sm-6 col-lg-4">
+      <a class="home-menu-card-teacher" [routerLink]="Links.VIDEO">
+        <img src="/assets/images/videos.svg" alt="videos-icon" />
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <a class="home-menu-card-teacher" [routerLink]="Links.COLLAGE">
+        <img src="assets/images/audio.svg" alt="audio-icon" />
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <a class="home-menu-card-teacher" (click)="showDialog(Links.SERIES)">
+        <img src="/assets/images/code.svg" alt="code-icon" />
+      </a>
+    </div>
+  </div>
+  <app-nav-home></app-nav-home>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-2 col-lg-3 d-flex flex-column">
+    <div class="instructions-wrapper">
+      <img src="/assets/images/speaker.svg" alt="speaker icon" />
+      <img src="/assets/images/speak.svg" alt="speak icon" />
+    </div>
+  </div>
+  <div class="col-9 col-md-8 col-lg-9 collage-container">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-lg-3 audio-wrapper" *ngFor="let audio of audios$ | async">
+        <app-audio [audio]="audio"></app-audio>
+      </div>
+    </div>
+  </div>
+</div>
+<app-nav-home></app-nav-home>

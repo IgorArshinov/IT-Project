@@ -1,0 +1,13 @@
+<div>
+  <div *ngFor="let menuTitle of menuTitels" [ngStyle]="{margin: '1em', width: '25em'}">
+    <div *ngIf="menuTitle.title === 'Nieuw Werkblad'; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+      <button mat-stroked-button [ngStyle]="{width: '100%' ,height: '5em'}"
+              (click)="openPopup(menuTitle.url)">{{menuTitle.title}}</button>
+    </ng-template>
+    <ng-template #elseBlock>
+      <button mat-stroked-button [ngStyle]="{width: '100%' ,height: '5em'}"
+              (click)="openSelector()">{{menuTitle.title}}</button>
+    </ng-template>
+  </div>
+</div>

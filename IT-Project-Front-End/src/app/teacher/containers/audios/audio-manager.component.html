@@ -1,0 +1,30 @@
+<app-data-manager
+  [titleConfiguration]="titleConfiguration"
+  [data$]="audios$ | async"
+  (filter)="filter($event)"
+  (createNew)="popNewAudioForm()"
+  [template]="rowDefinition"
+  [showCategoryFilter]="true"
+  (categoryFilter)="categoryFilter($event)"
+>
+</app-data-manager>
+<app-nav-home [mode]="navHome"></app-nav-home>
+
+<ng-template #rowDefinition let-item="item">
+  <td>{{ item.name }}</td>
+  <td>{{ item.categoryName }}</td>
+  <td>
+    <div [ngStyle]="{ display: 'flex', justifyContent: 'space-between' }">
+      <app-audio-small-player [audio]="item"></app-audio-small-player>
+      <div [ngStyle]="{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}">
+        <button mat-button (click)="editElement(item)">
+          <fa-icon [icon]="pencilAlt"></fa-icon>
+        </button>
+
+        <button mat-button (click)="deleteItem(item)">
+          <fa-icon [icon]="trashIcon"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </td>
+</ng-template>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.business.tests\audioservicetest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using LiminoAPI.Business.DTO_s;
+using LiminoAPI.Business.Services;
+using LiminoAPI.Data.Models;
+using LiminoAPI.Data.Repositories.Interfaces;
+using Moq;
+using Xunit;
+
+namespace LiminoAPI.Business.Tests
+{
+    public class AudioServiceTest
+    {
+        private readonly Mock&lt;IBaseRepository&lt;Audio&gt;&gt; _repoMock;
+        private readonly AudioService _audioService;
+
+        private readonly IList&lt;AudioDTO&gt; _audioDTOs;
+
+        private readonly IList&lt;Audio&gt; _audios;
+
+
+        private static readonly Category Category = new Category
+            {CategoryType = &quot;video&quot;, Id = 1, ImageUrl = &quot;imageUrl1&quot;, Name = &quot;eten&quot;};
+
+        private readonly AudioDTO _audioDTO = new AudioDTO
+            {Id = 1, ImageUrl = &quot;imageUrl1&quot;, Name = &quot;eten&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl1&quot;};
+
+        private readonly AudioDTO _audio1DTO = new AudioDTO
+            {Id = 2, ImageUrl = &quot;imageUrl2&quot;, Name = &quot;verkeer&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl12&quot;};
+
+        private readonly AudioDTO _audio2DTO = new AudioDTO
+            {Id = 3, ImageUrl = &quot;imageUrl3&quot;, Name = &quot;drinken&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl3&quot;};
+
+        private readonly AudioDTO _audio3DTO = new AudioDTO
+            {Id = 4, ImageUrl = &quot;imageUrl4&quot;, Name = &quot;wassen&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl4&quot;};
+
+        private readonly Audio _audio = new Audio
+        {
+            Id = 1, ImageUrl = &quot;imageUrl1&quot;, Name = &quot;eten&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl1&quot;,
+            Category = Category
+        };
+
+        private readonly Audio _audio1 = new Audio
+        {
+            Id = 2, ImageUrl = &quot;imageUrl2&quot;, Name = &quot;verkeer&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl2&quot;,
+            Category = Category
+        };
+
+        private readonly Audio _audio2 = new Audio
+        {
+            Id = 3, ImageUrl = &quot;imageUrl3&quot;, Name = &quot;drinken&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl3&quot;,
+            Category = Category
+        };
+
+        private readonly Audio _audio3 = new Audio
+        {
+            Id = 4, ImageUrl = &quot;imageUrl4&quot;, Name = &quot;wassen&quot;, CategoryId = 1, FragmentUrl = &quot;fargmentUrl4&quot;,
+            Category = Category
+        };
+
+
+        public AudioServiceTest()
+        {
+            _repoMock = new Mock&lt;IBaseRepository&lt;Audio&gt;&gt;();
+            _audioService = new AudioService(_repoMock.Object);
+
+            _audioDTOs = new List&lt;AudioDTO&gt; {_audioDTO, _audio1DTO, _audio2DTO, _audio3DTO};
+            _audios = new List&lt;Audio&gt; {_audio, _audio1, _audio2, _audio3};
+        }
+
+        [Fact]
+        public void UpdateCallsRepositoryWithDTO()
+        {
+            _repoMock.Setup(repo =&gt; repo.Update(_audio)).Returns(_audio);
+
+            var audioDTO = _audioService.Update(_audioDTO);
+
+            Assert.Equal(_audioDTO, audioDTO);
+            _repoMock.Verify(repo =&gt; repo.Update(_audio));
+        }
+
+        [Fact]
+        public void AddCallsRepositoryWithDTO()
+        {
+            _repoMock.Setup(repo =&gt; repo.Add(_audio));
+
+            _audioService.Add(_audioDTO);
+
+            _repoMock.Verify(repo =&gt; repo.Add(_audio));
+        }
+
+        [Fact]
+        public void DeleteCallsRepositoryWithDTO()
+        {
+            _repoMock.Setup(repo =&gt; repo.GetById(1)).Returns(_audio);
+            _repoMock.Setup(repo =&gt; repo.Delete(_audio));
+
+            _audioService.Delete(1);
+
+            _repoMock.Setup(repo =&gt; repo.GetById(1)).Returns(_audio);
+            _repoMock.Verify(repo =&gt; repo.Delete(_audio));
+        }
+
+        [Fact]
+        public void GetAllReturnsAllAudio()
+        {
+            _repoMock.Setup(repo =&gt; repo.GetAll()).Returns(_audios);
+
+            var audioDtos = _audioService.GetAll();
+
+            _repoMock.Verify(repo =&gt; repo.GetAll());
+            Assert.Equal(_audioDTOs, audioDtos);
+        }
+
+        [Fact]
+        public void GetAllReturnsAllAudioByCategoryId()
+        {
+            _repoMock.Setup(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Audio, bool&gt;&gt;())).Returns(_audios);
+
+            var audioDtos = _audioService.GetAllAudiosByCategoryId(1);
+
+            _repoMock.Verify(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Audio, bool&gt;&gt;()));
+            Assert.Equal(_audioDTOs, audioDtos);
+        }
+
+        [Fact]
+        public void GetAudioByIdReturnsCorrectAudio()
+        {
+            _repoMock.Setup(repo =&gt; repo.GetById(1L)).Returns(_audio);
+
+            var audio = _audioService.GetAudioById(1L);
+
+            _repoMock.Verify(repo =&gt; repo.GetById(1L));
+            Assert.Equal(_audioDTO, audio);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[22,9,23,85,1],[25,9,26,107,1],[28,9,29,111,1],[31,9,32,110,1],[34,9,35,109,1],[37,9,41,11,1],[43,9,47,11,1],[49,9,53,11,1],[55,9,59,11,1],[62,9,62,34,1],[63,9,63,10,1],[64,13,64,60,1],[65,13,65,64,1],[67,13,67,93,1],[68,13,68,75,1],[69,9,69,10,1],[73,9,73,10,1],[74,13,74,74,1],[76,13,76,60,1],[78,13,78,47,1],[79,13,79,59,1],[80,9,80,10,1],[84,9,84,10,1],[85,13,85,55,1],[87,13,87,42,1],[89,13,89,56,1],[90,9,90,10,1],[94,9,94,10,1],[95,13,95,70,1],[96,13,96,58,1],[98,13,98,37,1],[100,13,100,70,1],[101,13,101,59,1],[102,9,102,10,1],[106,9,106,10,1],[107,13,107,69,1],[109,13,109,52,1],[111,13,111,53,1],[112,13,112,49,1],[113,9,113,10,1],[117,9,117,10,1],[118,13,118,103,1],[120,13,120,71,1],[122,13,122,87,1],[123,13,123,49,1],[124,9,124,10,1],[128,9,128,10,1],[129,13,129,71,1],[131,13,131,56,1],[133,13,133,56,1],[134,13,134,44,1],[135,9,135,10,1]]);
+    </script>
+  </body>
+</html>

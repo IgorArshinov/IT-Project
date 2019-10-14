@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi\migrations\20190330102309_dataseed.designer.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+// &lt;auto-generated /&gt;
+using LiminoAPI.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+namespace LiminoAPI.Migrations
+{
+    [DbContext(typeof(AppDbContext))]
+    [Migration(&quot;20190330102309_dataseed&quot;)]
+    partial class dataseed
+    {
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation(&quot;ProductVersion&quot;, &quot;2.1.8-servicing-32085&quot;)
+                .HasAnnotation(&quot;Relational:MaxIdentifierLength&quot;, 128)
+                .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Audio&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;long&gt;(&quot;CategoryId&quot;);
+
+                    b.Property&lt;string&gt;(&quot;FragmentUrl&quot;);
+
+                    b.Property&lt;string&gt;(&quot;ImageUrl&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Name&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.HasIndex(&quot;CategoryId&quot;);
+
+                    b.ToTable(&quot;Audios&quot;);
+
+                    b.HasData(
+                        new { Id = 1L, CategoryId = 1L, FragmentUrl = &quot;audioUrl1&quot;, ImageUrl = &quot;imageUrl4&quot;, Name = &quot;Dit is een banaan&quot; },
+                        new { Id = 2L, CategoryId = 1L, FragmentUrl = &quot;audioUrl3&quot;, ImageUrl = &quot;imageUrl7&quot;, Name = &quot;Dit is een appel&quot; },
+                        new { Id = 3L, CategoryId = 2L, FragmentUrl = &quot;audioUrl2&quot;, ImageUrl = &quot;imageUrl5&quot;, Name = &quot;welke bus moet ik nemen?&quot; },
+                        new { Id = 4L, CategoryId = 2L, FragmentUrl = &quot;audioUrl2&quot;, ImageUrl = &quot;imageUrl8&quot;, Name = &quot;hoe neem ik een taxi?&quot; },
+                        new { Id = 5L, CategoryId = 3L, FragmentUrl = &quot;audioUrl3&quot;, ImageUrl = &quot;imageUrl5&quot;, Name = &quot;Mag ik een glas water?&quot; }
+                    );
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Category&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;string&gt;(&quot;CategoryType&quot;);
+
+                    b.Property&lt;string&gt;(&quot;ImageUrl&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Name&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.ToTable(&quot;Categories&quot;);
+
+                    b.HasData(
+                        new { Id = 1L, CategoryType = &quot;Video&quot;, ImageUrl = &quot;imageUrl1&quot;, Name = &quot;eten&quot; },
+                        new { Id = 2L, CategoryType = &quot;Audio&quot;, ImageUrl = &quot;imageUrl2&quot;, Name = &quot;verkeer&quot; },
+                        new { Id = 3L, CategoryType = &quot;Audio&quot;, ImageUrl = &quot;imageUrl3&quot;, Name = &quot;drinken&quot; }
+                    );
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Video&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;long&gt;(&quot;CategoryId&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Name&quot;);
+
+                    b.Property&lt;string&gt;(&quot;VideoUrl&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.HasIndex(&quot;CategoryId&quot;);
+
+                    b.ToTable(&quot;Videos&quot;);
+
+                    b.HasData(
+                        new { Id = 1L, CategoryId = 1L, Name = &quot;Video van een banaan&quot;, VideoUrl = &quot;VideoUrl1&quot; },
+                        new { Id = 4L, CategoryId = 1L, Name = &quot;Video van een appel&quot;, VideoUrl = &quot;VideoUrl2&quot; },
+                        new { Id = 2L, CategoryId = 2L, Name = &quot;Video van een bus&quot;, VideoUrl = &quot;VideoUrl2&quot; },
+                        new { Id = 3L, CategoryId = 3L, Name = &quot;Video van een glas water&quot;, VideoUrl = &quot;VideoUrl3&quot; }
+                    );
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Audio&quot;, b =&gt;
+                {
+                    b.HasOne(&quot;LiminoAPI.Data.Models.Category&quot;, &quot;Category&quot;)
+                        .WithMany()
+                        .HasForeignKey(&quot;CategoryId&quot;)
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Video&quot;, b =&gt;
+                {
+                    b.HasOne(&quot;LiminoAPI.Data.Models.Category&quot;, &quot;Category&quot;)
+                        .WithMany()
+                        .HasForeignKey(&quot;CategoryId&quot;)
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+#pragma warning restore 612, 618
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[16,9,16,10,0],[18,13,21,118,0],[23,13,24,17,0],[24,17,24,18,0],[24,18,25,21,0],[25,21,27,126,0],[27,126,29,21,0],[29,21,29,52,0],[29,52,31,21,0],[31,21,31,55,0],[31,55,33,21,0],[33,21,33,52,0],[33,52,35,21,0],[35,21,35,48,0],[35,48,37,21,0],[37,21,37,36,0],[37,36,39,21,0],[39,21,39,46,0],[39,46,41,21,0],[41,21,41,41,0],[41,41,43,21,0],[43,21,49,23,0],[49,23,50,17,0],[50,17,50,18,0],[50,18,50,20,0],[23,13,50,20,0],[52,13,53,17,0],[53,17,53,18,0],[53,18,54,21,0],[54,21,56,126,0],[56,126,58,21,0],[58,21,58,56,0],[58,56,60,21,0],[60,21,60,52,0],[60,52,62,21,0],[62,21,62,48,0],[62,48,64,21,0],[64,21,64,36,0],[64,36,66,21,0],[66,21,66,45,0],[66,45,68,21,0],[68,21,72,23,0],[72,23,73,17,0],[73,17,73,18,0],[73,18,73,20,0],[52,13,73,20,0],[75,13,76,17,0],[76,17,76,18,0],[76,18,77,21,0],[77,21,79,126,0],[79,126,81,21,0],[81,21,81,52,0],[81,52,83,21,0],[83,21,83,48,0],[83,48,85,21,0],[85,21,85,52,0],[85,52,87,21,0],[87,21,87,36,0],[87,36,89,21,0],[89,21,89,46,0],[89,46,91,21,0],[91,21,91,41,0],[91,41,93,21,0],[93,21,98,23,0],[98,23,99,17,0],[99,17,99,18,0],[99,18,99,20,0],[75,13,99,20,0],[101,13,102,17,0],[102,17,102,18,0],[102,18,103,21,0],[103,21,106,59,0],[106,59,107,17,0],[107,17,107,18,0],[107,18,107,20,0],[101,13,107,20,0],[109,13,110,17,0],[110,17,110,18,0],[110,18,111,21,0],[111,21,114,59,0],[114,59,115,17,0],[115,17,115,18,0],[115,18,115,20,0],[109,13,115,20,0],[117,9,117,10,0]]);
+    </script>
+  </body>
+</html>

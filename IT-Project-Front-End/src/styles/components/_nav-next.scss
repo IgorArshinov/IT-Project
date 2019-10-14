@@ -1,0 +1,28 @@
+.nav-next {
+  &-container {
+    position: fixed;
+    right: $nav-home-abs-position + 7em;
+    bottom: $nav-home-abs-position;
+    z-index: $z-index-1;
+
+    @include mobile {
+      right: $nav-home-abs-position + 9em;
+    }
+  }
+
+  @extend %link-card;
+  background-color: $white;
+  margin: 0;
+  border: 0;
+  outline: 0;
+
+  img {
+    width: $nav-home-img-size;
+    height: $nav-home-img-size;
+
+    @include mobile {
+      width: $nav-home-img-tablet-size;
+      height: $nav-home-img-tablet-size;
+    }
+  }
+}

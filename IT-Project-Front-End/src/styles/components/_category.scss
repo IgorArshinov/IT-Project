@@ -1,0 +1,12 @@
+.category-card {
+  @extend %link-card;
+  margin: 1.4em 0;
+  p {
+    font-family: $secondary-font;
+    font-weight: 700;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

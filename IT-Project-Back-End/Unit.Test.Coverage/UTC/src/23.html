@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.business.tests\exerciseservicetest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using LiminoAPI.Business.Services;
+using LiminoAPI.Data.Models;
+using LiminoAPI.Data.Repositories.Interfaces;
+using Moq;
+using Xunit;
+
+namespace LiminoAPI.Business.Tests
+{
+    public class ExerciseServiceTest
+    {
+        private readonly Mock&lt;IBaseRepository&lt;Exercise&gt;&gt; _repository;
+        private readonly ExerciseService _service;
+
+        private readonly IEnumerable&lt;Exercise&gt; _exercises;
+        private readonly IEnumerable&lt;ExerciseDTO&gt; _exerciseDtos;
+
+        private readonly Exercise _exercise1 = new Exercise
+        {
+            Id = 1,
+            Type = &quot;Collage&quot;,
+            CategoryId = 1,
+            Name = &quot;First Question&quot;,
+            QuestionUrl = &quot;questionUrl&quot;,
+            VideoUrl = &quot;videoUrl&quot;,
+            Answers = Answers1
+        };
+        private readonly Exercise _exercise2 = new Exercise
+        {
+            Id = 2,
+            Type = &quot;True Or False&quot;,
+            CategoryId = 2,
+            Name = &quot;Second Question&quot;,
+            QuestionUrl = &quot;questionUrl2&quot;,
+            VideoUrl = &quot;videoUrl2&quot;,
+            Answers = Answers2
+        };
+        private readonly Exercise _exercise3 = new Exercise
+        {
+            Id = 3,
+            Type = &quot;Multiple Choice&quot;,
+            CategoryId = 3,
+            Name = &quot;Second Question&quot;,
+            QuestionUrl = &quot;questionUrl3&quot;,
+            VideoUrl = &quot;videoUrl3&quot;,
+            Answers = Answers3
+        };
+
+        private readonly ExerciseDTO _exerciseDTO1 = new ExerciseDTO
+        {
+            Type = &quot;Collage&quot;,
+            CategoryId = 1,
+            QuestionUrl = &quot;questionUrl&quot;,
+            VideoUrl = &quot;videoUrl&quot;,
+            Answers = AnswersDTOs1
+        };
+        private readonly ExerciseDTO _exerciseDTO2 = new ExerciseDTO
+        {
+            Type = &quot;True Or False&quot;,
+            CategoryId = 2,
+            QuestionUrl = &quot;questionUrl2&quot;,
+            VideoUrl = &quot;videoUrl2&quot;,
+            Answers = AnswersDTOs2
+        };
+        private readonly ExerciseDTO _exerciseDTO3 = new ExerciseDTO
+        {
+            Type = &quot;Multiple Choice&quot;,
+            CategoryId = 3,
+
+            QuestionUrl = &quot;questionUrl3&quot;,
+            VideoUrl = &quot;videoUrl3&quot;
+        };
+         
+        private static readonly Answer Answer1 = new Answer
+            {Id = 1, ExerciseId = 1, AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+        private static readonly Answer Answer2 = new Answer
+            {Id = 2, ExerciseId = 1, AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+        private static readonly Answer Answer3 = new Answer
+            {Id = 3, ExerciseId = 1, AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+        private static readonly List&lt;Answer&gt; Answers1 = new List&lt;Answer&gt; {Answer1, Answer2, Answer3};
+        private static readonly Answer Answer4 = new Answer
+            {Id = 4, ExerciseId = 2, AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+        private static readonly Answer Answer5 = new Answer
+            {Id = 5, ExerciseId = 2, AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+        private static readonly Answer Answer6 = new Answer
+            {Id = 6, ExerciseId = 2, AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+        static readonly List&lt;Answer&gt; Answers2 = new List&lt;Answer&gt; {Answer4, Answer5, Answer6};
+        private static readonly Answer Answer7 = new Answer
+            {Id = 7, ExerciseId = 3, AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+        private static readonly Answer Answer8 = new Answer
+            {Id = 8, ExerciseId = 3, AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+        private static readonly Answer Answer9 = new Answer
+            {Id = 9, ExerciseId = 3, AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+        private static readonly List&lt;Answer&gt; Answers3 = new List&lt;Answer&gt; {Answer7, Answer8, Answer9};
+        
+        private static readonly AnswerDTO AnswerDTO1 = new AnswerDTO
+            {AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+        private static readonly AnswerDTO AnswerDTO2 = new AnswerDTO
+            {AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+        private static readonly AnswerDTO AnswerDTO3 = new AnswerDTO
+            {AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+        private static readonly List&lt;AnswerDTO&gt; AnswersDTOs1 = new List&lt;AnswerDTO&gt; {AnswerDTO1,AnswerDTO2,AnswerDTO3};
+        
+        private static readonly AnswerDTO AnswerDTO4 = new AnswerDTO
+            { AudioUrl = &quot;AudioUrl1&quot;, ImageUrl = &quot;ImgUrl1&quot;, Correct = false};
+        private static readonly AnswerDTO AnswerDTO5 = new AnswerDTO
+            {AudioUrl = &quot;AudioUrl2&quot;, ImageUrl = &quot;ImgUrl2&quot;, Correct = false};
+        private static readonly AnswerDTO AnswerDTO6 = new AnswerDTO
+            {AudioUrl = &quot;AudioUrl3&quot;, ImageUrl = &quot;ImgUrl3&quot;, Correct = true};
+
+        private static readonly List&lt;AnswerDTO&gt; AnswersDTOs2 = new List&lt;AnswerDTO&gt; {AnswerDTO4,AnswerDTO5,AnswerDTO6};
+
+        public ExerciseServiceTest()
+        {
+            _repository = new Mock&lt;IBaseRepository&lt;Exercise&gt;&gt;();
+            _service = new ExerciseService(_repository.Object);
+
+            _exercises = new List&lt;Exercise&gt; {_exercise1, _exercise2, _exercise3};
+            _exerciseDtos = new List&lt;ExerciseDTO&gt;{_exerciseDTO1,_exerciseDTO2,_exerciseDTO3};
+        }
+
+        [Fact]
+        private void MethodGetAllReturnsListOfExercise()
+        {
+            _repository.Setup(repo =&gt; repo.GetAll()).Returns(_exercises);
+            
+            var actionResult = _service.GetAll();
+            Assert.Equal(_exerciseDtos, actionResult);
+        }
+
+        [Fact]
+        private void MethodGetByCategoryIdReturnsCorrectExercises()
+        {
+            _repository.Setup(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Exercise, bool&gt;&gt;())).Returns(_exercises);
+
+            var actionResult = _service.GetAllForCategoryId(1);
+            Assert.Equal(_exerciseDtos, actionResult);
+        }
+
+        [Fact]
+        private void MethodGetByIdReturnsCorrectExercise()
+        {
+            _repository.Setup(repo =&gt; repo.GetById(1)).Returns(_exercise1);
+
+            var actionResult = _service.GetById(1);
+            Assert.Equal(_exerciseDTO1 , actionResult);
+        }
+        
+        [Fact]
+        private void MethodGetByIdThrowsExceptionWhenIdIsInvalid()
+        {
+            //Setup repo mock
+            _repository.Setup(repo =&gt; repo.GetById(1)).Returns(_exercise1);
+
+            Assert.Throws&lt;Exception&gt;(() =&gt; _service.GetById(5555));
+        }
+
+        [Fact]
+        private void MethodGetByIdTrowsExceptionWhenIdDoesNotExist()
+        {
+            _repository.Setup(repo =&gt; repo.GetById(5555)).Throws&lt;Exception&gt;();
+            Assert.Throws&lt;Exception&gt;(() =&gt; _service.GetById(5555));
+        }
+
+        [Fact]
+        private void MethodAddExerciseReturnsCorrectResponse()
+        {
+            _repository.Setup(repo =&gt; repo.Add(_exercise1));
+            _service.Add(_exerciseDTO1);
+
+            _repository.Verify(repo =&gt; repo.Add(_exercise1), Times.Once);
+        }
+        
+        [Fact]
+        private void MethodDeleteThrowsExceptionWhenInvalid()
+        {
+            _repository.Setup(repo =&gt; repo.GetById(5555)).Returns(_exercise1);
+            _repository.Setup(repo =&gt; repo.Delete(_exercise1)).Throws(new Exception());
+
+            Assert.Throws&lt;Exception&gt;(() =&gt; _service.Delete(5555));
+        }
+        
+        [Fact]
+        private void MethodDeleteCallsDeleteInRepo()
+        {
+            //Setup repo
+            _repository.Setup(repo =&gt; repo.Delete(_exercise1));
+            _repository.Setup(repo =&gt; repo.GetById(1)).Returns(_exercise1);
+
+            //check Delete has called in repo
+            _service.Delete(1);
+            _repository.Verify(repo =&gt; repo.Delete(_exercise1), Times.Once);
+        }
+
+        [Fact]
+        private void MethodPutCallsPutInRepo()
+        {
+            //Setup repo
+            _repository.Setup(repo =&gt; repo.Update(_exercise1));
+
+            //check Delete has called in repo
+            _service.Put(_exerciseDTO1);
+            _repository.Verify(repo =&gt; repo.Update(_exercise1), Times.Once);
+        }
+
+        [Fact]
+        private void MethodGetAllExercisesByTypeAndCategoryReturnsCorrectResponse()
+        {
+            _repository.Setup(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Exercise, bool&gt;&gt;())).Returns(_exercises);
+
+            var actionResult = _service.GetAllExercisesByTypeAndCategory(&quot;collage&quot;, 1);
+            Assert.Equal(_exerciseDtos, actionResult);
+        }
+        
+        [Fact]
+        private void MethodGetAllExercisesByTypeAndCategoryReturnsCorrectResponseWithCapitalInType()
+        {
+            _repository.Setup(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Exercise, bool&gt;&gt;())).Returns(_exercises);
+
+            var actionResult = _service.GetAllExercisesByTypeAndCategory(&quot;cOllAge&quot;, 1);
+            Assert.Equal(_exerciseDtos, actionResult);
+        }
+        [Fact]
+        private void MethodGetAllExercisesByTypeAndCategoryReturnsCorrectResponseWithCategoryTypeIsNull()
+        {
+            _repository.Setup(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Exercise, bool&gt;&gt;())).Returns(_exercises);
+
+            var actionResult = _service.GetAllExercisesByTypeAndCategory(&quot;cOllAge&quot;, null);
+            Assert.Equal(_exerciseDtos, actionResult);
+        }
+        
+        [Fact]
+        private void MethodGetAllExercisesByTypeAndCategoryThrowsExceptionWhenTypeIsNotKnown()
+        {
+            _repository.Setup(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Exercise, bool&gt;&gt;())).Returns(_exercises);
+
+            Assert.Throws&lt;InvalidEnumArgumentException&gt;(() =&gt; _service.GetAllExercisesByTypeAndCategory(&quot;Non-existingType&quot;, null));
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[20,9,29,11,1],[30,9,39,11,1],[40,9,49,11,1],[51,9,58,11,1],[59,9,66,11,1],[67,9,74,11,1],[76,9,77,101,1],[78,9,79,101,1],[80,9,81,100,1],[82,9,82,102,1],[83,9,84,101,1],[85,9,86,101,1],[87,9,88,100,1],[89,9,89,94,1],[90,9,91,101,1],[92,9,93,101,1],[94,9,95,100,1],[96,9,96,102,1],[98,9,99,77,1],[100,9,101,77,1],[102,9,103,76,1],[104,9,104,119,1],[106,9,107,78,1],[108,9,109,77,1],[110,9,111,76,1],[113,9,113,119,1],[115,9,115,37,1],[116,9,116,10,1],[117,13,117,65,1],[118,13,118,64,1],[120,13,120,82,1],[121,13,121,94,1],[122,9,122,10,1],[126,9,126,10,1],[127,13,127,74,1],[129,13,129,50,1],[130,13,130,55,1],[131,9,131,10,1],[135,9,135,10,1],[136,13,136,111,1],[138,13,138,64,1],[139,13,139,55,1],[140,9,140,10,1],[144,9,144,10,1],[145,13,145,76,1],[147,13,147,52,1],[148,13,148,56,1],[149,9,149,10,1],[153,9,153,10,1],[155,13,155,76,1],[157,13,157,44,1],[157,44,157,66,1],[157,66,157,68,1],[157,13,157,68,1],[158,9,158,10,1],[162,9,162,10,1],[163,13,163,79,1],[164,13,164,44,1],[164,44,164,66,1],[164,66,164,68,1],[164,13,164,68,1],[165,9,165,10,1],[169,9,169,10,1],[170,13,170,61,1],[171,13,171,41,1],[173,13,173,74,1],[174,9,174,10,1],[178,9,178,10,1],[179,13,179,79,1],[180,13,180,88,1],[182,13,182,44,1],[182,44,182,65,1],[182,65,182,67,1],[182,13,182,67,1],[183,9,183,10,1],[187,9,187,10,1],[189,13,189,64,1],[190,13,190,76,1],[193,13,193,32,1],[194,13,194,77,1],[195,9,195,10,1],[199,9,199,10,1],[201,13,201,64,1],[204,13,204,41,1],[205,13,205,77,1],[206,9,206,10,1],[210,9,210,10,1],[211,13,211,111,1],[213,13,213,88,1],[214,13,214,55,1],[215,9,215,10,1],[219,9,219,10,1],[220,13,220,111,1],[222,13,222,88,1],[223,13,223,55,1],[224,9,224,10,1],[227,9,227,10,1],[228,13,228,111,1],[230,13,230,91,1],[231,13,231,55,1],[232,9,232,10,1],[236,9,236,10,1],[237,13,237,111,1],[239,13,239,63,1],[239,63,239,130,1],[239,130,239,132,1],[239,13,239,132,1],[240,9,240,10,1]]);
+    </script>
+  </body>
+</html>

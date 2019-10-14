@@ -1,0 +1,49 @@
+<div [formGroup]="form" class="exercise-form">
+  <div class="row">
+    <div class="col-lg-9 order-1 order-lg-0">
+      <div class="col-12 d-flex my-3">
+        <img src="/assets/images/multi-video.JPG" />
+        <mat-form-field class="ml-2 col">
+          <input matInput type="text" id="title" formControlName="title" placeholder="[Titel werkblad voor de lesgever] (optioneel)" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <h3>Voeg vraag toe (optioneel)</h3>
+          <label [hidden]="questionUrl !== undefined" for="question">
+            <img src="/assets/images/audio.svg" />
+          </label>
+          <mat-icon [hidden]="questionUrl === undefined">check</mat-icon>
+          <input class="hidden" id="question" formControlName="question" type="file" (change)="upload($event, 'question')" />
+        </div>
+      </div>
+
+      <div class="col">
+        <h3>Insluitcode video:</h3>
+        <mat-form-field class="ml-2 col">
+          <input matInput type="text" id="video" formControlName="video" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <h3>Antwoordmogelijkheden</h3>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+          <app-answer letter="A" (answerChanged)="updateAnswer(0, $event)"></app-answer>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+          <app-answer letter="B" (answerChanged)="updateAnswer(1, $event)"></app-answer>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+          <app-answer letter="C" (answerChanged)="updateAnswer(2, $event)"></app-answer>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+          <app-answer letter="D" (answerChanged)="updateAnswer(3, $event)"></app-answer>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 d-flex order-0 order-lg-1 justify-content-center">
+      <app-aspects-exercise [categories]="categories$ | async" (aspects)="submit($event)"></app-aspects-exercise>
+    </div>
+  </div>
+</div>

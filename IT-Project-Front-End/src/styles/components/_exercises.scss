@@ -1,0 +1,28 @@
+// General styling for exercises components
+
+.question {
+  &-icon {
+    padding: 0.5em;
+    background-color: $brand-3;
+    @include border-radius(10%);
+    cursor: pointer;
+    width: inherit;
+    max-width: 12em;
+    margin: 2em auto;
+    box-shadow: 0 2px 35px 0 rgba(42, 51, 83, 0.12), 0 8px 15px rgba(0, 0, 0, 0.26);
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.exercises-series-wrapper {
+  margin-bottom: 10em;
+}
+
+.exercise-series-choices-wrapper [class*='col-'] {
+  display: flex;
+  justify-content: center;
+}

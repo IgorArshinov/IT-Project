@@ -1,0 +1,19 @@
+<ng-container *ngIf="exerciseSeries$ | async as exerciseSeries">
+  <ng-container *ngIf="activeExercise$ | async as activeExercise">
+    <div class="exercises-series-wrapper">
+      <div *ngIf="activeExercise && isExerciseType(activeExercise, 'true or false')">
+        <app-trueorfalse-exercise [exercise]="activeExercise"></app-trueorfalse-exercise>
+      </div>
+      <div *ngIf="activeExercise && isExerciseType(activeExercise, 'multiple choice')">
+        <app-choice-exercise [exercise]="activeExercise"></app-choice-exercise>
+      </div>
+      <div *ngIf="activeExercise && activeExercise.type.toLowerCase() === 'collage'">
+        <app-collage-exercise [exercise]="activeExercise"></app-collage-exercise>
+      </div>
+      <div *ngIf="activeExercise && activeExercise.type.toLowerCase() === 'titelblad'">
+        <app-titlepage [exercise]="activeExercise"></app-titlepage>
+      </div>
+    </div>
+    <app-nav-next *ngIf="isLastExercise(exerciseSeries, activeExercise)" (nextButtonClicked)="onGoToNext()"></app-nav-next>
+  </ng-container>
+</ng-container>

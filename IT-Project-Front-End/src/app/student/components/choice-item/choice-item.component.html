@@ -1,0 +1,10 @@
+<div
+  class="choice-card {{ getChoiceItemCssClass() }}"
+  (click)="verifyAnswer()"
+  [ngClass]="{
+    'choice-correct': clicked && answer.isCorrect,
+    'choice-wrong': clicked && !answer.isCorrect
+  }"
+>
+  <img [src]="'/assets/' + answer.imageUrl" />
+</div>

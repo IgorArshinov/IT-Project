@@ -1,0 +1,30 @@
+<div class="row">
+  <div *ngIf="exercise" class="col-md-2 col-lg-3 d-flex flex-column">
+    <div class="instructions-wrapper">
+      <img *ngIf="!exercise?.videoUrl" src="/assets/images/listen.svg" alt="listen icon" />
+      <img *ngIf="!exercise?.videoUrl" src="/assets/images/speaker.svg" alt="speaker icon" />
+      <img *ngIf="exercise?.videoUrl" src="/assets/images/watch.svg" alt="watch icon" />
+      <img *ngIf="exercise?.videoUrl" src="/assets/images/film.svg" alt="film icon" />
+      <img src="/assets/images/click.svg" alt="click icon" />
+    </div>
+    <div class="question-icon">
+      <img src="/assets/images/audio.svg" (click)="playQuestion()" />
+    </div>
+  </div>
+  <div class="col-9 col-md-8 col-lg-9">
+    <div class="row">
+      <div class="col-12" *ngIf="exercise?.videoUrl">
+        <app-video [video]="mapExerciseToVideo(exercise)"></app-video>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-9 col-md-10 col-lg-12">
+  <div class="row exercise-series-choices-wrapper">
+    <div class="col-12 col-sm-6 col-lg-3" *ngFor="let answer of exercise?.answers">
+      <app-choice-item (play)="play($event)" [answer]="answer" [index]="i"></app-choice-item>
+    </div>
+  </div>
+</div>
+
+<app-nav-home></app-nav-home>

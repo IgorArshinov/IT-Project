@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.data\models\audio.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LiminoAPI.Data.Models
+{
+    public class Audio : BaseEntity
+    {
+        public string FragmentUrl { get; set; }
+        public string ImageUrl { get; set; }
+
+        [ForeignKey(&quot;CategoryId&quot;)]
+        public Category Category { get; set; }
+        public long CategoryId { get; set; }
+        
+        
+        public override bool Equals(object obj)
+        {
+            var audio = obj as Audio;
+
+            if (audio == null)
+            {
+                return false;
+            }
+
+            return Id.Equals(audio.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[7,37,7,41,1],[7,42,7,46,1],[8,34,8,38,1],[8,39,8,43,1],[11,36,11,40,0],[11,41,11,45,1],[12,34,12,38,1],[12,39,12,43,1],[16,9,16,10,1],[17,13,17,38,1],[19,13,19,31,1],[20,13,20,14,0],[21,17,21,30,0],[24,13,24,40,1],[25,9,25,10,1],[28,9,28,10,0],[29,13,29,37,0],[30,9,30,10,0]]);
+    </script>
+  </body>
+</html>

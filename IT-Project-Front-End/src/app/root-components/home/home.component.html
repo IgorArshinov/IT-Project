@@ -1,0 +1,25 @@
+<div class="home-container">
+  <div class="row justify-content-center">
+    <div class="logo-container">
+      <img src="/assets/images/logo.png" alt="limino-logo" />
+    </div>
+  </div>
+
+  <div class="row home-menu-container">
+    <div class="col-12 col-sm-6 col-lg-4">
+      <a [routerLink]="['/student/videos']" class="home-menu-card">
+        <img src="/assets/images/videos.svg" alt="videos-icon" />
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <a [routerLink]="['/student/audios']" class="home-menu-card">
+        <img src="/assets/images/audio.svg" alt="audio-icon" />
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <a class="home-menu-card" (click)="openDialog()">
+        <img src="/assets/images/code.svg" alt="code-icon" />
+      </a>
+    </div>
+  </div>
+</div>

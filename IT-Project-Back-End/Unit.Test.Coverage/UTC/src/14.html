@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi\migrations\20190413100011_exerciseandanswersadded.designer.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+// &lt;auto-generated /&gt;
+using LiminoAPI.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+namespace LiminoAPI.Migrations
+{
+    [DbContext(typeof(AppDbContext))]
+    [Migration(&quot;20190413100011_exerciseAndAnswersAdded&quot;)]
+    partial class exerciseAndAnswersAdded
+    {
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation(&quot;ProductVersion&quot;, &quot;2.2.3-servicing-35854&quot;)
+                .HasAnnotation(&quot;Relational:MaxIdentifierLength&quot;, 128)
+                .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Answer&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;string&gt;(&quot;AudioUrl&quot;);
+
+                    b.Property&lt;bool&gt;(&quot;Correct&quot;);
+
+                    b.Property&lt;long&gt;(&quot;ExerciseId&quot;);
+
+                    b.Property&lt;string&gt;(&quot;ImageUrl&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.HasIndex(&quot;ExerciseId&quot;);
+
+                    b.ToTable(&quot;Answers&quot;);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            AudioUrl = &quot;AudioUrl1&quot;,
+                            Correct = false,
+                            ExerciseId = 1L,
+                            ImageUrl = &quot;ImgUrl1&quot;
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            AudioUrl = &quot;AudioUrl2&quot;,
+                            Correct = false,
+                            ExerciseId = 1L,
+                            ImageUrl = &quot;ImgUrl2&quot;
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            AudioUrl = &quot;AudioUrl3&quot;,
+                            Correct = true,
+                            ExerciseId = 1L,
+                            ImageUrl = &quot;ImgUrl3&quot;
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            AudioUrl = &quot;AudioUrl1&quot;,
+                            Correct = false,
+                            ExerciseId = 2L,
+                            ImageUrl = &quot;ImgUrl1&quot;
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            AudioUrl = &quot;AudioUrl2&quot;,
+                            Correct = false,
+                            ExerciseId = 2L,
+                            ImageUrl = &quot;ImgUrl2&quot;
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            AudioUrl = &quot;AudioUrl3&quot;,
+                            Correct = true,
+                            ExerciseId = 2L,
+                            ImageUrl = &quot;ImgUrl3&quot;
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            AudioUrl = &quot;AudioUrl1&quot;,
+                            Correct = false,
+                            ExerciseId = 3L,
+                            ImageUrl = &quot;ImgUrl1&quot;
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            AudioUrl = &quot;AudioUrl2&quot;,
+                            Correct = false,
+                            ExerciseId = 3L,
+                            ImageUrl = &quot;ImgUrl2&quot;
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            AudioUrl = &quot;AudioUrl3&quot;,
+                            Correct = true,
+                            ExerciseId = 3L,
+                            ImageUrl = &quot;ImgUrl3&quot;
+                        });
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Audio&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;long&gt;(&quot;CategoryId&quot;);
+
+                    b.Property&lt;string&gt;(&quot;FragmentUrl&quot;);
+
+                    b.Property&lt;string&gt;(&quot;ImageUrl&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Name&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.HasIndex(&quot;CategoryId&quot;);
+
+                    b.ToTable(&quot;Audios&quot;);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryId = 1L,
+                            FragmentUrl = &quot;audioUrl1&quot;,
+                            ImageUrl = &quot;imageUrl4&quot;,
+                            Name = &quot;Dit is een banaan&quot;
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryId = 1L,
+                            FragmentUrl = &quot;audioUrl3&quot;,
+                            ImageUrl = &quot;imageUrl7&quot;,
+                            Name = &quot;Dit is een appel&quot;
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 2L,
+                            FragmentUrl = &quot;audioUrl2&quot;,
+                            ImageUrl = &quot;imageUrl5&quot;,
+                            Name = &quot;welke bus moet ik nemen?&quot;
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryId = 2L,
+                            FragmentUrl = &quot;audioUrl2&quot;,
+                            ImageUrl = &quot;imageUrl8&quot;,
+                            Name = &quot;hoe neem ik een taxi?&quot;
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CategoryId = 3L,
+                            FragmentUrl = &quot;audioUrl3&quot;,
+                            ImageUrl = &quot;imageUrl5&quot;,
+                            Name = &quot;Mag ik een glas water?&quot;
+                        });
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Category&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;string&gt;(&quot;CategoryType&quot;);
+
+                    b.Property&lt;string&gt;(&quot;ImageUrl&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Name&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.ToTable(&quot;Categories&quot;);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryType = &quot;Video&quot;,
+                            ImageUrl = &quot;imageUrl1&quot;,
+                            Name = &quot;food&quot;
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryType = &quot;Audio&quot;,
+                            ImageUrl = &quot;imageUrl2&quot;,
+                            Name = &quot;traffic&quot;
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryType = &quot;Audio&quot;,
+                            ImageUrl = &quot;imageUrl3&quot;,
+                            Name = &quot;drinks&quot;
+                        });
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Exercise&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;long&gt;(&quot;CategoryId&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Name&quot;);
+
+                    b.Property&lt;string&gt;(&quot;QuestionUrl&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Type&quot;);
+
+                    b.Property&lt;string&gt;(&quot;VideoUrl&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.HasIndex(&quot;CategoryId&quot;);
+
+                    b.ToTable(&quot;Exercises&quot;);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryId = 1L,
+                            Name = &quot;First Question&quot;,
+                            QuestionUrl = &quot;questionUrl&quot;,
+                            Type = &quot;Collage&quot;,
+                            VideoUrl = &quot;videoUrl&quot;
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryId = 2L,
+                            Name = &quot;Second Question&quot;,
+                            QuestionUrl = &quot;questionUrl2&quot;,
+                            Type = &quot;True Or False&quot;,
+                            VideoUrl = &quot;videoUrl2&quot;
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 3L,
+                            Name = &quot;Second Question&quot;,
+                            QuestionUrl = &quot;questionUrl3&quot;,
+                            Type = &quot;Multiple Choice&quot;,
+                            VideoUrl = &quot;videoUrl3&quot;
+                        });
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Video&quot;, b =&gt;
+                {
+                    b.Property&lt;long&gt;(&quot;Id&quot;)
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property&lt;long&gt;(&quot;CategoryId&quot;);
+
+                    b.Property&lt;string&gt;(&quot;Name&quot;);
+
+                    b.Property&lt;string&gt;(&quot;VideoUrl&quot;);
+
+                    b.HasKey(&quot;Id&quot;);
+
+                    b.HasIndex(&quot;CategoryId&quot;);
+
+                    b.ToTable(&quot;Videos&quot;);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryId = 1L,
+                            Name = &quot;Video van een banaan&quot;,
+                            VideoUrl = &quot;VideoUrl1&quot;
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryId = 1L,
+                            Name = &quot;Video van een appel&quot;,
+                            VideoUrl = &quot;VideoUrl2&quot;
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryId = 2L,
+                            Name = &quot;Video van een bus&quot;,
+                            VideoUrl = &quot;VideoUrl2&quot;
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 3L,
+                            Name = &quot;Video van een glas water&quot;,
+                            VideoUrl = &quot;VideoUrl3&quot;
+                        });
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Answer&quot;, b =&gt;
+                {
+                    b.HasOne(&quot;LiminoAPI.Data.Models.Exercise&quot;, &quot;Exercise&quot;)
+                        .WithMany(&quot;Answers&quot;)
+                        .HasForeignKey(&quot;ExerciseId&quot;)
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Audio&quot;, b =&gt;
+                {
+                    b.HasOne(&quot;LiminoAPI.Data.Models.Category&quot;, &quot;Category&quot;)
+                        .WithMany()
+                        .HasForeignKey(&quot;CategoryId&quot;)
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Exercise&quot;, b =&gt;
+                {
+                    b.HasOne(&quot;LiminoAPI.Data.Models.Category&quot;, &quot;Category&quot;)
+                        .WithMany()
+                        .HasForeignKey(&quot;CategoryId&quot;)
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity(&quot;LiminoAPI.Data.Models.Video&quot;, b =&gt;
+                {
+                    b.HasOne(&quot;LiminoAPI.Data.Models.Category&quot;, &quot;Category&quot;)
+                        .WithMany()
+                        .HasForeignKey(&quot;CategoryId&quot;)
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+#pragma warning restore 612, 618
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[16,9,16,10,0],[18,13,21,118,0],[23,13,24,17,0],[24,17,24,18,0],[24,18,25,21,0],[25,21,27,126,0],[27,126,29,21,0],[29,21,29,52,0],[29,52,31,21,0],[31,21,31,49,0],[31,49,33,21,0],[33,21,33,52,0],[33,52,35,21,0],[35,21,35,52,0],[35,52,37,21,0],[37,21,37,36,0],[37,36,39,21,0],[39,21,39,46,0],[39,46,41,21,0],[41,21,41,42,0],[41,42,43,21,0],[43,21,115,28,0],[115,28,116,17,0],[116,17,116,18,0],[116,18,116,20,0],[23,13,116,20,0],[118,13,119,17,0],[119,17,119,18,0],[119,18,120,21,0],[120,21,122,126,0],[122,126,124,21,0],[124,21,124,52,0],[124,52,126,21,0],[126,21,126,55,0],[126,55,128,21,0],[128,21,128,52,0],[128,52,130,21,0],[130,21,130,48,0],[130,48,132,21,0],[132,21,132,36,0],[132,36,134,21,0],[134,21,134,46,0],[134,46,136,21,0],[136,21,136,41,0],[136,41,138,21,0],[138,21,178,28,0],[178,28,179,17,0],[179,17,179,18,0],[179,18,179,20,0],[118,13,179,20,0],[181,13,182,17,0],[182,17,182,18,0],[182,18,183,21,0],[183,21,185,126,0],[185,126,187,21,0],[187,21,187,56,0],[187,56,189,21,0],[189,21,189,52,0],[189,52,191,21,0],[191,21,191,48,0],[191,48,193,21,0],[193,21,193,36,0],[193,36,195,21,0],[195,21,195,45,0],[195,45,197,21,0],[197,21,218,28,0],[218,28,219,17,0],[219,17,219,18,0],[219,18,219,20,0],[181,13,219,20,0],[221,13,222,17,0],[222,17,222,18,0],[222,18,223,21,0],[223,21,225,126,0],[225,126,227,21,0],[227,21,227,52,0],[227,52,229,21,0],[229,21,229,48,0],[229,48,231,21,0],[231,21,231,55,0],[231,55,233,21,0],[233,21,233,48,0],[233,48,235,21,0],[235,21,235,52,0],[235,52,237,21,0],[237,21,237,36,0],[237,36,239,21,0],[239,21,239,46,0],[239,46,241,21,0],[241,21,241,44,0],[241,44,243,21,0],[243,21,270,28,0],[270,28,271,17,0],[271,17,271,18,0],[271,18,271,20,0],[221,13,271,20,0],[273,13,274,17,0],[274,17,274,18,0],[274,18,275,21,0],[275,21,277,126,0],[277,126,279,21,0],[279,21,279,52,0],[279,52,281,21,0],[281,21,281,48,0],[281,48,283,21,0],[283,21,283,52,0],[283,52,285,21,0],[285,21,285,36,0],[285,36,287,21,0],[287,21,287,46,0],[287,46,289,21,0],[289,21,289,41,0],[289,41,291,21,0],[291,21,319,28,0],[319,28,320,17,0],[320,17,320,18,0],[320,18,320,20,0],[273,13,320,20,0],[322,13,323,17,0],[323,17,323,18,0],[323,18,324,21,0],[324,21,327,59,0],[327,59,328,17,0],[328,17,328,18,0],[328,18,328,20,0],[322,13,328,20,0],[330,13,331,17,0],[331,17,331,18,0],[331,18,332,21,0],[332,21,335,59,0],[335,59,336,17,0],[336,17,336,18,0],[336,18,336,20,0],[330,13,336,20,0],[338,13,339,17,0],[339,17,339,18,0],[339,18,340,21,0],[340,21,343,59,0],[343,59,344,17,0],[344,17,344,18,0],[344,18,344,20,0],[338,13,344,20,0],[346,13,347,17,0],[347,17,347,18,0],[347,18,348,21,0],[348,21,351,59,0],[351,59,352,17,0],[352,17,352,18,0],[352,18,352,20,0],[346,13,352,20,0],[354,9,354,10,0]]);
+    </script>
+  </body>
+</html>

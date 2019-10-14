@@ -1,0 +1,42 @@
+.trueorfalse {
+  &-card {
+    @extend %link-card;
+    display: flex;
+    padding: 0.5em;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-video {
+  }
+
+  &-icon {
+    width: inherit;
+  }
+
+  &-wrapper {
+    padding: 0.5em;
+  }
+
+  &-correct {
+    border: 0.5em solid #8bc34aba;
+    padding: 0;
+
+    @include mobile {
+      border: 1em solid #8bc34aba;
+    }
+  }
+
+  &-wrong {
+    border: 0.5em solid tomato;
+    padding: 0;
+
+    @include mobile {
+      border: 1em solid tomato;
+    }
+  }
+}

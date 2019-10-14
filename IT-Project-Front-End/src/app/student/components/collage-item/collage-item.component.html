@@ -1,0 +1,7 @@
+<div class="collage-card" (click)="verifyAnswer()"
+     [ngClass]="{
+     'collage-correct': clicked && answer.isCorrect,
+     'collage-wrong': clicked && !answer.isCorrect
+     }">
+  <img [src]="'/assets/' + answer.imageUrl"/>
+</div>

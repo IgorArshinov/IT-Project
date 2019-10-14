@@ -1,0 +1,43 @@
+.audio {
+  &-card {
+    @extend %link-card;
+    height: 100%;
+    display: flex;
+    position: relative;
+    margin: 0;
+
+    p {
+      font-family: $secondary-font;
+      font-weight: 700;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-wrapper {
+    padding: 0.5em;
+  }
+
+  &-controls {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    padding: 0.5em;
+    background-color: $brand-3;
+    @include border-radius(50%);
+
+    img {
+      width: 2.6em;
+      height: 2.6em;
+    }
+  }
+
+  &-small-player {
+    img {
+      width: 2.2em;
+      height: 2.2em;
+    }
+  }
+}

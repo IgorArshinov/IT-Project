@@ -1,0 +1,10 @@
+<div
+  class="trueorfalse-card"
+  (click)="verifyAnswer()"
+  [ngClass]="{
+    'trueorfalse-correct': clicked && answer.isCorrect,
+    'trueorfalse-wrong': clicked && !answer.isCorrect
+  }"
+>
+  <img [src]="asset" />
+</div>

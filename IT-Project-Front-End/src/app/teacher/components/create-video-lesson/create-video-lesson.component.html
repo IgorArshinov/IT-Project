@@ -1,0 +1,39 @@
+<form [formGroup]="lessonForm" (ngSubmit)="onSubmit()">
+  <!--  <p *ngIf="lessonForm.touched && lessonForm.invalid &&-->
+  <!--  (lessonForm.controls.name.errors || lessonForm.controls.categoryId.errors || lessonForm.controls.videoUrl.errors)" class="alert alert-info">-->
+  <!--    Alle velden zijn <strong>verplicht</strong>!-->
+  <!--  </p>-->
+
+  <div class="form-group">
+    <mat-form-field class="container-fluid">
+      <input matInput type="text" id="name" formControlName="name" placeholder="Naam" [ngModel]="video.name" />
+    </mat-form-field>
+    <mat-form-field class="container-fluid">
+      <mat-label>Categorie</mat-label>
+      <mat-select id="selectCategory" formControlName="categoryId" [ngModel]="video.categoryId">
+        <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ng-template matStepLabel>Naam</ng-template>
+    <mat-form-field class="container-fluid">
+      <input matInput type="url" id="videoUrl" formControlName="videoUrl" placeholder="Video URL" [ngModel]="video.videoUrl" />
+    </mat-form-field>
+  </div>
+
+  <div
+    [ngStyle]="{
+      display: 'grid',
+      gridTemplateColumns: 'auto auto',
+      gridColumnGap: '1em'
+    }"
+  >
+    <button type="button" class="btn btn-primary" (click)="onCancel()">Annuleren</button>
+    <div matTooltip="Alle velden moeten ingevuld zijn" matTooltipPosition="after" [matTooltipDisabled]="!lessonForm.invalid">
+      <button type="submit" class="btn btn-warning" [disabled]="lessonForm.invalid || isLoading" [ngStyle]="{ width: '100%' }">
+        Opslaan <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,58 @@
+// ----------------------------------------------------------------------
+// Base
+// ----------------------------------------------------------------------
+
+html {
+  font-size: $base-font-size;
+}
+
+body,
+p {
+  font-family: $body-font;
+  font-weight: $body-font-weight;
+  font-size: $body-mobile-font-size;
+  line-height: $body-mobile-line-height;
+  color: $body-color;
+
+  @include tablet {
+    font-size: $body-desktop-font-size;
+    line-height: $body-desktop-line-height;
+  }
+}
+
+p {
+  margin-bottom: $p-margin-bottom;
+
+  &.lead {
+    font-weight: $p-lead-font-weight;
+    font-size: $p-lead-font-size;
+    line-height: $p-lead-font-lineheight;
+    letter-spacing: $p-lead-letter-spacing;
+  }
+}
+
+a,
+a:visited {
+  text-decoration: underline;
+  color: $a-color;
+  font-weight: $a-font-weight;
+  outline: 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: $a-on-event-color;
+  }
+}
+
+strong {
+  font-weight: $strong-font-weight;
+}
+
+blockquote {
+  font-size: 1.2em;
+  color: $dark-gray-2;
+  border-left: 0.2em solid $brand-2;
+  font-style: italic;
+}

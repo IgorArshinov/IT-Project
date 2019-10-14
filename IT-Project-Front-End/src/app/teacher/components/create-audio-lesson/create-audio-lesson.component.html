@@ -1,0 +1,46 @@
+<form [formGroup]="lessonForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-group">
+    <mat-form-field class="container-fluid">
+      <input matInput type="text" id="name" formControlName="name" placeholder="Naam" [ngModel]="audio.name"/>
+    </mat-form-field>
+    <mat-form-field class="container-fluid">
+      <mat-label>Categorie</mat-label>
+      <mat-select id="selectCategory" formControlName="categoryId" [ngModel]="audio.categoryId">
+        <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="container-fluid">
+      <input matInput readonly formControlName="fragmentUrl" placeholder="Audio" [ngModel]="audio.fragmentUrl">
+      <input class="hidden" id="fragmentUrl" type="file" (change)="upload($event, 'fragment')"/>
+      <label class="label-for-icon" for="fragmentUrl">
+        <mat-hint [ngStyle]="{ margin: '0.5em', fontSize: 'smaller'}"> Click Here </mat-hint>
+        <fa-icon [icon]="audioIcon"></fa-icon>
+      </label>
+    </mat-form-field>
+
+    <mat-form-field class="container-fluid">
+      <input matInput readonly formControlName="imageUrl" placeholder="Afbeelding" [ngModel]="audio.imageUrl">
+      <input class="hidden" id="imageUrl" type="file" (change)="upload($event, 'image')"/>
+      <label class="label-for-icon" for="imageUrl">
+        <mat-hint [ngStyle]="{ margin: '0.5em', fontSize: 'smaller'}"> Click Here </mat-hint>
+        <fa-icon [icon]="imageIcon"></fa-icon>
+      </label>
+    </mat-form-field>
+
+  </div>
+
+  <div [ngStyle]="{ display: 'grid', gridTemplateColumns: 'auto auto', gridColumnGap: '1em' }" >
+    <button type="button" class="btn btn-primary" (click)="onCancel()">Annuleren</button>
+    <div matTooltip="Alle velden moeten ingevuld zijn" matTooltipPosition="after"
+         [matTooltipDisabled]="!lessonForm.invalid">
+      <button type="submit" class="btn btn-warning" [disabled]="lessonForm.invalid || isLoading" [ngStyle]="{ width: '100%' }">
+        Aanmaken
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+      </button>
+    </div>
+  </div>
+</form>

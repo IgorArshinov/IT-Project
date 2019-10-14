@@ -1,0 +1,58 @@
+// ----------------------------------------------------------------------
+// Extends
+// ----------------------------------------------------------------------
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Container
+%container {
+  overflow: auto;
+
+  max-width: 100vw;
+  min-height: 100vh;
+
+  padding: $container-padding;
+}
+
+%content-wrapper {
+  flex: 1;
+  @extend %flex-column;
+  justify-content: space-between;
+
+  position: relative;
+  padding: $container-padding;
+  margin-bottom: $content-wrapper-margin-bottom;
+}
+
+%link-card {
+  padding: 1.5em;
+  margin: 1.4em 0;
+  @include border-radius(0.8em);
+  overflow: hidden;
+  @extend %flex-column;
+  align-items: center;
+  text-decoration: none;
+
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+
+  -webkit-box-shadow: 0 2px 35px 0 rgba(42, 51, 83, 0.12), 0 8px 15px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 35px 0 rgba(42, 51, 83, 0.12), 0 8px 15px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    -webkit-box-shadow: 0 20px 35px 0 rgba(42, 51, 83, 0.12), 0 5px 15px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 35px 0 rgba(42, 51, 83, 0.12), 0 5px 15px rgba(0, 0, 0, 0.06);
+    transform: translateY(-0.4em);
+  }
+
+  @include mobile {
+    margin: 1em 0;
+  }
+
+  @include desktop {
+    margin: 0;
+  }
+}

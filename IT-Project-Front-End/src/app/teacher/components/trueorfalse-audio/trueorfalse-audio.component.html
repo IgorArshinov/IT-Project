@@ -1,0 +1,33 @@
+<div [formGroup]="form" class="exercise-form">
+  <div class="row">
+    <div class="col-lg-9 order-1 order-lg-0">
+      <div class="col-12 d-flex my-3">
+        <img src="/assets/images/trueorfalseicon.PNG" />
+        <mat-form-field class="ml-2 col">
+          <input matInput type="text" id="title" formControlName="title" placeholder="[Titel werkblad voor de lesgever] (optioneel)" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <h3>Voeg vraag toe (optioneel)</h3>
+          <label [hidden]="questionUrl !== undefined" for="question">
+            <img src="/assets/images/audio.svg" />
+          </label>
+          <mat-icon [hidden]="questionUrl === undefined">check</mat-icon>
+          <input class="hidden" id="question" formControlName="question" type="file" (change)="upload($event, 'question')" />
+        </div>
+      </div>
+
+      <div class="col">
+        <h3>Duid het juiste antwoord aan:</h3>
+        <mat-radio-group id="correct" aria-labelledby="correct" formControlName="correct">
+          <mat-radio-button class="mx-3" checked value="true">Juist</mat-radio-button>
+          <mat-radio-button class="mx-3" value="false">Fout</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="col-lg-3 d-flex order-0 order-lg-1 justify-content-center">
+      <app-aspects-exercise [categories]="categories$ | async" (aspects)="submit($event)"></app-aspects-exercise>
+    </div>
+  </div>
+</div>

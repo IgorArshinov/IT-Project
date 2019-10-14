@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.data\repositories\exerciserepository.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using LiminoAPI.Data.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace LiminoAPI.Data.Repositories
+{
+    public class ExerciseRepository : BaseRepository&lt;Exercise&gt;
+    {
+        public ExerciseRepository(AppDbContext context) : base(context)
+        {
+           
+        }
+        public override IEnumerable&lt;Exercise&gt; GetAll()
+        {
+            return  Context.Set&lt;Exercise&gt;().Include(x =&gt; x.Answers).AsEnumerable();
+        }
+        public override IEnumerable&lt;Exercise&gt; GetAllWhere(Func&lt;Exercise, bool&gt; property)
+        {
+            return Context.Set&lt;Exercise&gt;().Include(x =&gt; x.Answers).Where(property).AsEnumerable();
+        }
+        
+        public override long Add(Exercise exercise)
+        {
+            Context.Set&lt;Exercise&gt;().Add(exercise);
+            Context.SaveChanges();
+            return exercise.Id;
+        }
+        public override void Delete(Exercise exercise)
+        {
+            Context.Set&lt;Exercise&gt;().Remove(exercise);
+            Context.SaveChanges();
+        }
+        public override Exercise GetById(long id)
+        {
+            return Context.Set&lt;Exercise&gt;().Include(x =&gt; x.Answers).FirstOrDefault(x =&gt; x.Id == id);
+        }
+        public override Exercise Update(Exercise exercise)
+        {
+            Context.Set&lt;Exercise&gt;().Update(exercise);
+            Context.SaveChanges();
+
+            return exercise;
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[11,59,11,72,0],[12,9,12,10,0],[14,9,14,10,0],[16,9,16,10,0],[17,13,17,84,0],[18,9,18,10,0],[20,9,20,10,0],[21,13,21,99,0],[22,9,22,10,0],[25,9,25,10,0],[26,13,26,51,0],[27,13,27,35,0],[28,13,28,32,0],[29,9,29,10,0],[31,9,31,10,0],[32,13,32,54,0],[33,13,33,35,0],[34,9,34,10,0],[36,9,36,10,0],[37,13,37,100,0],[38,9,38,10,0],[40,9,40,10,0],[41,13,41,54,0],[42,13,42,35,0],[44,13,44,29,0],[45,9,45,10,0]]);
+    </script>
+  </body>
+</html>

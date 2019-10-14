@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.data\repositories\baserepository.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using LiminoAPI.Data.Models;
+using LiminoAPI.Data.Repositories.Interfaces;
+
+namespace LiminoAPI.Data.Repositories
+{
+    public class BaseRepository&lt;T&gt; : IBaseRepository&lt;T&gt; where T : BaseEntity
+    {
+        protected readonly AppDbContext Context;
+
+
+        #region Constructor
+
+        public BaseRepository(AppDbContext context)
+        {
+            Context = context;
+        }
+
+        #endregion Constructor
+
+        public virtual long Add(T entity)
+        {
+            Context.Set&lt;T&gt;().Add(entity);
+            Context.SaveChanges();
+
+            return entity.Id;
+        }
+
+        public virtual void Delete(T entity)
+        {
+            Context.Set&lt;T&gt;().Remove(entity);
+            Context.SaveChanges();
+        }
+
+        public virtual IEnumerable&lt;T&gt; GetAll()
+        {
+            return  Context.Set&lt;T&gt;().AsEnumerable();
+        }
+
+        public virtual IEnumerable&lt;T&gt; GetAllWhere(Func&lt;T, bool&gt; property)
+        {
+            return Context.Set&lt;T&gt;().Where(property).AsEnumerable();
+        }
+
+        public virtual T GetById(long id)
+        {
+            return Context.Set&lt;T&gt;().FirstOrDefault(x =&gt; x.Id == id);
+        }
+
+
+        public virtual T Update(T entity)
+        {
+            Context.Set&lt;T&gt;().Update(entity);
+            Context.SaveChanges();
+
+            return entity;
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[16,9,16,52,0],[17,9,17,10,0],[18,13,18,31,0],[19,9,19,10,0],[24,9,24,10,0],[25,13,25,42,0],[26,13,26,35,0],[28,13,28,30,0],[29,9,29,10,0],[32,9,32,10,0],[33,13,33,45,0],[34,13,34,35,0],[35,9,35,10,0],[38,9,38,10,0],[39,13,39,53,0],[40,9,40,10,0],[43,9,43,10,0],[44,13,44,68,0],[45,9,45,10,0],[48,9,48,10,0],[49,13,49,69,0],[50,9,50,10,0],[54,9,54,10,0],[55,13,55,45,0],[56,13,56,35,0],[58,13,58,27,0],[59,9,59,10,0]]);
+    </script>
+  </body>
+</html>

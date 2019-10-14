@@ -1,0 +1,50 @@
+.collage {
+  &-card {
+    @extend %link-card;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-container {
+    border: 0.1em solid $collage-container-border-color;
+  }
+
+  &-icon {
+    @extend .question-icon;
+  }
+
+  &-wrapper {
+    padding: 0.5em;
+  }
+
+  &-correct {
+    border: 1em solid #8bc34aba;
+  }
+
+  &-wrong {
+    border: 1em solid tomato;
+  }
+}
+
+.instructions-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    width: 4em;
+    height: 4em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+
+    @include desktop {
+      width: 5em;
+      height: 5em;
+    }
+  }
+}

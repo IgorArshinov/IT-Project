@@ -1,0 +1,36 @@
+<app-data-manager
+  [titleConfiguration]="titleConfiguration"
+  [data$]="videos$ | async"
+  (filter)="filter($event)"
+  (categoryFilter)="categoryFilter($event)"
+  (createNew)="popNewVideoForm()"
+  [template]="rowDefinition"
+  [showCategoryFilter]="true"
+  [showNiveauFilter]="false"
+>
+</app-data-manager>
+<app-nav-home [mode]="navHomeType"></app-nav-home>
+
+<ng-template #rowDefinition let-item="item">
+  <td>{{ item.name }}</td>
+  <td>{{ item.categoryName }}</td>
+  <td>
+    <div
+      [ngStyle]="{
+        display: 'flex',
+        justifyContent: 'space-between'
+      }"
+    >
+      <a href="{{ item.videoUrl.replace('embed/', 'watch?v=') }}">Ga naar video</a>
+      <div [ngStyle]="{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}">
+        <button mat-button (click)="editElement(item)">
+          <fa-icon [icon]="pencilAlt"></fa-icon>
+        </button>
+
+        <button mat-button (click)="deleteVideo(item)">
+          <fa-icon [icon]="trashIcon"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </td>
+</ng-template>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.business\services\exerciseservice.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using LiminoAPI.Data.Models;
+using LiminoAPI.Data.Repositories.Interfaces;
+
+namespace LiminoAPI.Business.Services
+{
+    public class ExerciseService : IExerciseService
+    {
+        private readonly IBaseRepository&lt;Exercise&gt; _repository;
+
+        public ExerciseService(IBaseRepository&lt;Exercise&gt; repository)
+        {
+            _repository = repository;
+        }
+        
+        public IEnumerable&lt;ExerciseDTO&gt; GetAll()
+        {
+            var exercises = _repository.GetAll();
+            return MapExerciseListToExerciseDTOList(exercises);
+        }
+
+        public IEnumerable&lt;ExerciseDTO&gt; GetAllForCategoryId(long? categoryId)
+        {
+            return MapExerciseListToExerciseDTOList(categoryId == null
+                ? _repository.GetAll()
+                : _repository.GetAllWhere(exercise =&gt; exercise.CategoryId.Equals(categoryId)));
+        }
+        
+        public IEnumerable&lt;ExerciseDTO&gt; GetAllExercisesByTypeAndCategory(string type, long? categoryId)
+        {
+            switch (type.ToLower())
+            {
+                case &quot;collage&quot;:
+                case &quot;true or false&quot;:
+                case &quot;multiple choice&quot;:
+                    return MapExerciseListToExerciseDTOList(categoryId != null
+                        ? _repository.GetAllWhere(exercise =&gt;
+                            exercise.Type.ToLower().Equals(type.ToLower()) &amp;&amp; exercise.CategoryId.Equals(categoryId))
+                        : _repository.GetAllWhere(exercise =&gt; exercise.Type.ToLower().Equals(type.ToLower())));
+                default:
+                    throw new InvalidEnumArgumentException(type + &quot; is not known type&quot;);
+            }
+        }
+
+        public ExerciseDTO GetById(long id)
+        {
+            Exercise exercise = _repository.GetById(id);
+            if (exercise == null)
+            {
+                throw new Exception();
+            }
+            return  MapExerciseToExerciseDTO(exercise);
+        }
+
+        public long Add(ExerciseDTO exerciseDTO)
+        {
+            return _repository.Add(MapExerciseDTOToExercise(exerciseDTO));
+        }
+
+        public void Delete(long id)
+        {
+            _repository.Delete(_repository.GetById(id));
+        }
+
+        public void Put(ExerciseDTO exerciseDTO)
+        {
+            var exercise = MapExerciseDTOToExercise(exerciseDTO);
+            _repository.Update(exercise);
+        }
+
+        private static IEnumerable&lt;ExerciseDTO&gt; MapExerciseListToExerciseDTOList(IEnumerable&lt;Exercise&gt; exercises)
+        {
+            return exercises.Select(exercise =&gt; new ExerciseDTO
+            {
+                Type = exercise.Type,
+                CategoryId = exercise.CategoryId,
+                QuestionUrl = exercise.QuestionUrl,
+                VideoUrl = exercise.VideoUrl,
+                Answers = MapAnswersListToAnswerDTOList(exercise.Answers)
+            }).ToList();
+        }
+
+        private static ExerciseDTO MapExerciseToExerciseDTO(Exercise exercise)
+        {
+            return new ExerciseDTO
+            {
+                Type = exercise.Type,
+                CategoryId = exercise.CategoryId,
+                QuestionUrl = exercise.QuestionUrl,
+                VideoUrl = exercise.VideoUrl,
+                Answers = MapAnswersListToAnswerDTOList(exercise.Answers)
+            };
+        }
+
+        private static Exercise MapExerciseDTOToExercise(ExerciseDTO exerciseDTO)
+        {
+            return new Exercise
+            {
+                Type = exerciseDTO.Type,
+                CategoryId = exerciseDTO.CategoryId,
+                QuestionUrl = exerciseDTO.QuestionUrl,
+                VideoUrl = exerciseDTO.VideoUrl,
+                Answers = MapAnswerDTOListToAnswerList(exerciseDTO.Answers)
+            };
+        }
+
+        private static List&lt;AnswerDTO&gt; MapAnswersListToAnswerDTOList(IEnumerable&lt;Answer&gt; answers)
+        {
+            
+            return answers?.Select(answer =&gt; new AnswerDTO
+            {
+                AudioUrl = answer.AudioUrl,
+                ImageUrl = answer.ImageUrl,
+                Correct = answer.Correct
+            }).ToList();
+        }
+
+        private static List&lt;Answer&gt; MapAnswerDTOListToAnswerList(IEnumerable&lt;AnswerDTO&gt; answers)
+        {
+            return answers?.Select(answer =&gt; new Answer
+            {
+                AudioUrl = answer.AudioUrl,
+                ImageUrl = answer.ImageUrl,
+                Correct = answer.Correct
+            }).ToList();
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[14,9,14,69,1],[15,9,15,10,1],[16,13,16,38,1],[17,9,17,10,1],[20,9,20,10,1],[21,13,21,50,1],[22,13,22,64,1],[23,9,23,10,1],[26,9,26,10,1],[27,13,29,55,1],[29,55,29,93,0],[29,93,29,96,1],[27,13,29,96,1],[30,9,30,10,1],[33,9,33,10,1],[34,13,34,36,1],[39,21,41,29,1],[41,29,41,117,0],[41,117,42,63,1],[42,63,42,109,0],[42,109,42,112,1],[39,21,42,112,1],[44,21,44,89,1],[46,9,46,10,1],[49,9,49,10,1],[50,13,50,57,1],[51,13,51,34,1],[52,13,52,14,1],[53,17,53,39,1],[55,13,55,56,1],[56,9,56,10,1],[59,9,59,10,1],[60,13,60,75,1],[61,9,61,10,1],[64,9,64,10,1],[65,13,65,57,1],[66,9,66,10,1],[69,9,69,10,1],[70,13,70,66,1],[71,13,71,42,1],[72,9,72,10,1],[75,9,75,10,1],[76,13,76,49,1],[76,49,83,14,1],[83,14,83,25,1],[76,13,83,25,1],[84,9,84,10,1],[87,9,87,10,1],[88,13,95,15,1],[96,9,96,10,1],[99,9,99,10,1],[100,13,107,15,1],[108,9,108,10,1],[111,9,111,10,1],[113,13,113,46,1],[113,46,118,14,1],[118,14,118,25,1],[113,13,118,25,1],[119,9,119,10,1],[122,9,122,10,1],[123,13,123,46,1],[123,46,128,14,1],[128,14,128,25,1],[123,13,128,25,1],[129,9,129,10,1]]);
+    </script>
+  </body>
+</html>

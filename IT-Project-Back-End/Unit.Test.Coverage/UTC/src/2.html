@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.tests\audiocontrollertest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using System.ComponentModel;
+using LiminoAPI.Business;
+using LiminoAPI.Business.DTO_s;
+using LiminoAPI.Business.Services;
+using LiminoAPI.Controllers;
+using LiminoAPI.Data.Models;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using Xunit;
+
+namespace LiminoAPI.Tests
+{
+    public class AudioControllerTest
+    {
+        private readonly Mock&lt;IAudioService&gt; _audioServiceMock;
+
+        private readonly AudioController _controller;
+        private readonly IEnumerable&lt;AudioDTO&gt; _audios;
+
+        private readonly AudioDTO _audio1 = new AudioDTO
+        {
+            CategoryId = 1,
+            Id = 1,
+            Name = &quot;Audio van een banaan&quot;,
+            ImageUrl = &quot;AudioUrl1&quot;,
+            FragmentUrl = &quot;FragmentUrl1&quot;
+        };
+
+        private readonly AudioDTO _audio2 = new AudioDTO
+        {
+            CategoryId = 1,
+            Id = 4,
+            Name = &quot;Audio van een appel&quot;,
+            ImageUrl = &quot;AudioUrl2&quot;,
+            FragmentUrl = &quot;FragmentUrl2&quot;
+        };
+
+
+        public AudioControllerTest()
+        {
+            _audioServiceMock = new Mock&lt;IAudioService&gt;();
+            _controller = new AudioController(_audioServiceMock.Object);
+
+            _audios = new List&lt;AudioDTO&gt; {_audio1, _audio2};
+        }
+
+        [Fact]
+        public void GetAllAudiosByWithoutCategoryIdReturnsAllCategories()
+        {
+            _audioServiceMock.Setup(service =&gt; service.GetAll()).Returns(_audios);
+
+            var result = (OkObjectResult) _controller.GetAll(null);
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_audios, responseObject.Data);
+        }
+
+        [Fact]
+        public void GetAllAudiosByWithCategoryIdReturnsAllCategoriesForThatCategory()
+        {
+            _audioServiceMock.Setup(service =&gt; service.GetAllAudiosByCategoryId(1)).Returns(_audios);
+
+            var result = (OkObjectResult) _controller.GetAll(1);
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_audios, responseObject.Data);
+        }
+
+        [Fact]
+        public void GetAllAudiosByReturnsBadRequestOnThrows()
+        {
+            _audioServiceMock.Setup(service =&gt; service.GetAll()).Throws&lt;InvalidEnumArgumentException&gt;();
+
+            var result = _controller.GetAll(null);
+
+            Assert.IsType&lt;BadRequestObjectResult&gt;(result);
+        }
+
+        [Fact]
+        public void GetAudioByIdReturnsAudio()
+        {
+            _audioServiceMock.Setup(service =&gt; service.GetAudioById(1)).Returns(_audio1);
+
+            var result = (OkObjectResult) _controller.GetAudioById(1);
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_audio1, responseObject.Data);
+        }
+
+        [Fact]
+        public void GetAudioByIdReturnsBadRequestOnThrows()
+        {
+            _audioServiceMock.Setup(service =&gt; service.GetAudioById(1)).Throws&lt;InvalidEnumArgumentException&gt;();
+
+            var result = _controller.GetAudioById(1);
+
+            Assert.IsType&lt;BadRequestObjectResult&gt;(result);
+        }
+
+
+        [Fact]
+        public void AddNewAudioReturnsNewAudioWithId()
+        {
+            var audio = new AudioDTO
+            {
+                CategoryId = 1,
+                Name = &quot;Audio van een banaan&quot;,
+                ImageUrl = &quot;AudioUrl1&quot;,
+                FragmentUrl = &quot;FragmentUrl1&quot;
+            };
+            _audioServiceMock.Setup(service =&gt; service.Add(audio)).Returns(1);
+
+            var result = (OkObjectResult) _controller.AddNewAudio(audio);
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_audio1, responseObject.Data);
+        }
+
+        [Fact]
+        public void AddNewAudioReturnsBadRequestOnThrows()
+        {
+            _audioServiceMock.Setup(service =&gt; service.Add(_audio1)).Throws&lt;InvalidEnumArgumentException&gt;();
+
+            var result = _controller.AddNewAudio(_audio1);
+
+            Assert.IsType&lt;BadRequestObjectResult&gt;(result);
+        }
+
+        [Fact]
+        public void AddNewAudioReturnsBadRequestOnNull()
+        {
+            var result = _controller.AddNewAudio(null);
+
+            Assert.IsType&lt;NotFoundResult&gt;(result);
+        }
+
+        [Fact]
+        public void DeleteAudioReturnsOk()
+        {
+            _audioServiceMock.Setup(service =&gt; service.GetAudioById(1)).Returns(_audio1);
+            _audioServiceMock.Setup(service =&gt; service.Delete(1));
+
+            var result = _controller.DeleteAudio(1);
+
+            Assert.IsType&lt;OkResult&gt;(result);
+        }
+
+        [Fact]
+        public void DeleteAudioNotFoundReturnsBadRequest()
+        {
+            var result = _controller.DeleteAudio(1);
+
+            Assert.IsType&lt;NotFoundResult&gt;(result);
+        }
+
+        [Fact]
+        public void DeleteAudioReturnsBadRequestOnThrows()
+        {
+            _audioServiceMock.Setup(service =&gt; service.GetAudioById(1)).Returns(_audio1);
+            _audioServiceMock.Setup(service =&gt; service.Delete(1)).Throws&lt;InvalidEnumArgumentException&gt;();
+
+            var result = _controller.DeleteAudio(1);
+
+            Assert.IsType&lt;BadRequestObjectResult&gt;(result);
+        }
+
+        [Fact]
+        public void UpdateAudioNotFoundReturnsBadRequest()
+        {
+            var result = _controller.UpdateAudio(null);
+
+            Assert.IsType&lt;NotFoundResult&gt;(result);
+        }
+
+        [Fact]
+        public void UpdateAudioReturnsBadRequestOnThrows()
+        {
+            _audioServiceMock.Setup(service =&gt; service.Update(_audio1)).Throws&lt;InvalidEnumArgumentException&gt;();
+
+            var result = _controller.UpdateAudio(_audio1);
+
+            Assert.IsType&lt;BadRequestObjectResult&gt;(result);
+        }
+
+        [Fact]
+        public void UpdateAudioReturnsUpdatedAudio()
+        {
+            var audio = new AudioDTO
+            {
+                CategoryId = 1,
+                Name = &quot;Audio van een banaan&quot;,
+                ImageUrl = &quot;AudioUrl1&quot;,
+                FragmentUrl = &quot;FragmentUrl1&quot;
+            };
+            _audioServiceMock.Setup(service =&gt; service.Update(audio)).Returns(_audio1);
+
+
+            var result = (OkObjectResult) _controller.UpdateAudio(audio);
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_audio1, responseObject.Data);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[21,9,28,11,1],[30,9,37,11,1],[40,9,40,37,1],[41,9,41,10,1],[42,13,42,59,1],[43,13,43,73,1],[45,13,45,61,1],[46,9,46,10,1],[50,9,50,10,1],[51,13,51,83,1],[53,13,53,68,1],[54,13,54,64,1],[56,13,56,56,1],[57,9,57,10,1],[61,9,61,10,1],[62,13,62,102,1],[64,13,64,65,1],[65,13,65,64,1],[67,13,67,56,1],[68,9,68,10,1],[72,9,72,10,1],[73,13,73,105,1],[75,13,75,51,1],[77,13,77,59,1],[78,9,78,10,1],[82,9,82,10,1],[83,13,83,90,1],[85,13,85,71,1],[86,13,86,64,1],[88,13,88,56,1],[89,9,89,10,1],[93,9,93,10,1],[94,13,94,112,1],[96,13,96,54,1],[98,13,98,59,1],[99,9,99,10,1],[104,9,104,10,1],[105,13,111,15,1],[112,13,112,79,1],[114,13,114,74,1],[115,13,115,64,1],[117,13,117,56,1],[118,9,118,10,1],[122,9,122,10,1],[123,13,123,109,1],[125,13,125,59,1],[127,13,127,59,1],[128,9,128,10,1],[132,9,132,10,1],[133,13,133,56,1],[135,13,135,51,1],[136,9,136,10,1],[140,9,140,10,1],[141,13,141,90,1],[142,13,142,67,1],[144,13,144,53,1],[146,13,146,45,1],[147,9,147,10,1],[151,9,151,10,1],[152,13,152,53,1],[154,13,154,51,1],[155,9,155,10,1],[159,9,159,10,1],[160,13,160,90,1],[161,13,161,106,1],[163,13,163,53,1],[165,13,165,59,1],[166,9,166,10,1],[170,9,170,10,1],[171,13,171,56,1],[173,13,173,51,1],[174,9,174,10,1],[178,9,178,10,1],[179,13,179,112,1],[181,13,181,59,1],[183,13,183,59,1],[184,9,184,10,1],[188,9,188,10,1],[189,13,195,15,1],[196,13,196,88,1],[199,13,199,74,1],[200,13,200,64,1],[202,13,202,56,1],[203,9,203,10,1]]);
+    </script>
+  </body>
+</html>

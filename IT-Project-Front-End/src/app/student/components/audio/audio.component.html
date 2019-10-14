@@ -1,0 +1,11 @@
+<a [routerLink]="[audio.id]" class="audio-card">
+  <img
+    [src]="'/assets/' + audio.imageUrl"
+    alt="{{ audio.name }}"
+    [ngStyle]="{ height: 'auto', width: '100%' }"
+    (click)="isPlaying ? pauseAudio() : playAudio()"
+  />
+  <div class="audio-controls">
+    <img [src]="isPlaying ? '/assets/images/pauseIcon.png' : '/assets/images/audio.svg'" (click)="isPlaying ? pauseAudio() : playAudio()" />
+  </div>
+</a>

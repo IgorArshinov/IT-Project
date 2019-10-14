@@ -1,0 +1,34 @@
+<div [formGroup]="form" class="d-flex text-center justify-content-center">
+  <mat-card>
+    <div class="form-group">
+      <h2 class="mb-4">{{ letter }}</h2>
+      <label for="{{ 'image-' + letter }}">
+        <img
+          mat-card-image
+          id="{{ 'img-' + letter }}"
+          [src]="answer.imageUrl !== '' ? '/assets/' + answer.imageUrl : '/assets/images/upload-placeholder.png'"
+        />
+      </label>
+      <input class="hidden" formControlName="image" id="{{ 'image-' + letter }}" type="file" (change)="upload($event, 'image')" />
+    </div>
+
+    <div class="form-group">
+      <div class="form-group">
+        <mat-radio-group id="correct" aria-labelledby="correct" formControlName="correct">
+          <mat-radio-button class="mx-3" value="true">Juist</mat-radio-button>
+          <mat-radio-button class="mx-3" checked value="false">Fout</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h5>Geluidsfragment (optioneel)</h5>
+      <label for="{{ 'audio-' + letter }}">
+        <img src="/assets/images/audio.svg" />
+      </label>
+      <span class="inputfile">
+        <input formControlName="audio" id="{{ 'audio-' + letter }}" type="file" (change)="upload($event, 'audio')" />
+      </span>
+    </div>
+  </mat-card>
+</div>

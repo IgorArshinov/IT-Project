@@ -1,0 +1,69 @@
+<form [formGroup]="exerciseSeriesForm">
+  <mat-form-field class="container-fluid">
+    <input
+      matInput
+      id="name"
+      formControlName="name"
+      [ngModel]="exerciseSeries.name"
+      maxlength="40"
+      (ngModelChange)="exerciseSeries.name = $event"
+      placeholder="Titel"
+    />
+    <mat-hint align="end">{{ exerciseSeries.name.length }} / 40</mat-hint>
+  </mat-form-field>
+  <mat-form-field class="container-fluid">
+    <mat-label>Niveau</mat-label>
+    <mat-select id="level" formControlName="level" [(ngModel)]="exerciseSeries.level">
+      <mat-option [value]="undefined">Geen</mat-option>
+      <mat-option [value]="exerciseLevel.Easy">Gemakkelijk</mat-option>
+      <mat-option [value]="exerciseLevel.Normal">Gemiddeld</mat-option>
+      <mat-option [value]="exerciseLevel.Hard">Moeilijk</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div cdkDropListGroup class="exercises-container" [ngStyle]="{ margin: '1em' }">
+    <div cdkDropList [cdkDropListEnterPredicate]="dropListEnterPredicate" (cdkDropListDropped)="dropListDropped()"></div>
+    <div
+      cdkDropList
+      *ngFor="let exercise of exerciseSeries.exercises; let i = index"
+      [cdkDropListEnterPredicate]="dropListEnterPredicate"
+      (cdkDropListDropped)="dropListDropped()"
+    >
+      <div cdkDrag cdkDragBoundary=".exercises-container" class="example-box" (cdkDragMoved)="dragMoved($event)">
+        <div>
+          <p>{{ exercise.title }}</p>
+          <div>
+            <button mat-button>
+              <fa-icon [icon]="moveIcon"></fa-icon>
+            </button>
+            <button mat-button (click)="deleteExercise(i)">
+              <fa-icon [icon]="deleteIcon"></fa-icon>
+            </button>
+            <button mat-button [disabled]="exerciseSeries.exercises.length >= 20" (click)="duplicateExercise(i)">
+              <fa-icon [icon]="copyIcon"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button [disabled]="exerciseSeries.exercises.length >= 20" class="example-box" mat-raised-button (click)="addExercise()">
+      <p>Voeg een werkblad toe</p>
+    </button>
+  </div>
+  <div [ngStyle]="{ display: 'flex', justifyContent: 'flex-end' }">
+    <mat-hint align="end">{{ exerciseSeries.exercises.length }} / 20</mat-hint>
+  </div>
+
+  <div [ngStyle]="{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }">
+    <button mat-raised-button type="button" (click)="resetForm()" class="btn btn-warning" [ngStyle]="{ margin: '0 0.5em' }">
+      Resetten
+    </button>
+    <button type="submit" (click)="submit()" class="btn btn-success" [disabled]="exerciseSeriesForm.invalid || isLoading">
+      Aanmaken
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    </button>
+  </div>
+
+<!--  <button mat-raised-button type="submit" (click)="submit()" class="btn btn-success">Maak</button>-->
+<!--  <button mat-raised-button type="button" (click)="resetForm()" class="ml-2 btn btn-warning">Reset</button>-->
+</form>

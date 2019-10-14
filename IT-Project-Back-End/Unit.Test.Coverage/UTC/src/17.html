@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi\controllers\categorycontroller.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.ComponentModel;
+using System.Linq;
+using LiminoAPI.Business.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LiminoAPI.Controllers
+{
+    [Route(&quot;api/categories&quot;)]
+    public class CategoryController : ControllerBase
+    {
+        private readonly ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult GetCategories(string type = &quot;all&quot;)
+        {
+            try
+            {
+                var response = new ResponseObject
+                {
+                    Data = type.ToLower().Equals(&quot;all&quot;)
+                        ? _categoryService.GetAllCategories()
+                        : _categoryService.GetCategoriesByType(type)
+                };
+
+                return Ok(response);
+            }
+            catch (InvalidEnumArgumentException e)
+            {
+                return BadRequest(e);
+            }
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[13,9,13,68,1],[14,9,14,10,1],[15,13,15,48,1],[16,9,16,10,1],[22,9,22,10,1],[24,13,24,14,1],[25,17,30,19,1],[32,17,32,37,1],[34,13,34,51,1],[35,13,35,14,1],[36,17,36,38,1],[38,9,38,10,1]]);
+    </script>
+  </body>
+</html>

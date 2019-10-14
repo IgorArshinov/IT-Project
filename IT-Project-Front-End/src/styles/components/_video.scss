@@ -1,0 +1,28 @@
+.video {
+  &-card {
+    padding: 0.5em;
+    margin: 1.4em auto;
+    overflow: hidden;
+
+    -webkit-box-shadow: 0 2px 35px 0 rgba(42, 51, 83, 0.12), 0 8px 15px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 35px 0 rgba(42, 51, 83, 0.12), 0 8px 15px rgba(0, 0, 0, 0.06);
+
+    border: 0.1em solid $video-card-border-color;
+    max-width: 44em;
+  }
+
+  &-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

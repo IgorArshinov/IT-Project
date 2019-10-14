@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.tests\videoscontrollertest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using LiminoAPI.Business;
+using LiminoAPI.Business.Services;
+using LiminoAPI.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using Xunit;
+
+namespace LiminoAPI.Tests
+{
+    public class VideosControllerTest
+    {
+        private readonly Mock&lt;IVideoService&gt; _videoServiceMock;
+
+        private readonly VideosController _controller;
+        private readonly IEnumerable&lt;VideoDTO&gt; _videos;
+
+        private readonly VideoDTO _video1 = new VideoDTO
+        {
+            CategoryId = 1,
+            Id = 1,
+            Name = &quot;Video van een banaan&quot;,
+            VideoUrl = &quot;VideoUrl1&quot;
+        };
+
+        private readonly VideoDTO _video2 = new VideoDTO
+        {
+            CategoryId = 1,
+            Id = 4,
+            Name = &quot;Video van een appel&quot;,
+            VideoUrl = &quot;VideoUrl2&quot;
+        };
+
+        private readonly VideoDTO _video3 = new VideoDTO
+        {
+            CategoryId = 2,
+            Id = 2,
+            Name = &quot;Video van een bus&quot;,
+            VideoUrl = &quot;VideoUrl2&quot;
+        };
+
+        private readonly VideoDTO _video4 = new VideoDTO
+        {
+            CategoryId = 3,
+            Id = 3,
+            Name = &quot;Video van een glas water&quot;,
+            VideoUrl = &quot;VideoUrl3&quot;
+        };
+
+        public VideosControllerTest()
+        {
+            _videoServiceMock = new Mock&lt;IVideoService&gt;();
+            _controller = new VideosController(_videoServiceMock.Object);
+
+            _videos = new List&lt;VideoDTO&gt; {_video1, _video2, _video3};
+        }
+
+        [Fact]
+        private void MethodGetVideosWithoutParamsReturnsAllVideos()
+        {
+            _videoServiceMock.Setup(repo =&gt; repo.GetAll()).Returns(_videos);
+
+            var actionResult = _controller.GetVideos(null);
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+            Assert.Equal(_videos, responseObject.Data);
+        }
+
+        [Fact]
+        private void MethodGetVideosWithCategoryIdReturnsAllVideosForThatCategory()
+        {
+            _videoServiceMock.Setup(repo =&gt; repo.GetAllByCategoryId(1)).Returns(_videos);
+
+            var actionResult = _controller.GetVideos(1);
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+            Assert.Equal(_videos, responseObject.Data);
+        }
+
+        [Fact]
+        private void MethodGetVideoWithVideoIdReturnsVideo()
+        {
+            _videoServiceMock.Setup(repo =&gt; repo.GetById(1)).Returns(_video1);
+
+            var actionResult = _controller.GetVideo(1);
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+            Assert.Equal(_video1, responseObject.Data);
+        }
+
+        [Fact]
+        private void ThrowsBadRequestWhenVideoIdNotExists()
+        {
+            _videoServiceMock.Setup(repo =&gt; repo.GetById(5555)).Throws(new NullReferenceException());
+
+            var actionResult = _controller.GetVideo(5555);
+            var result = (BadRequestObjectResult) actionResult;
+            var statusCode = result.StatusCode;
+            Assert.Equal(400, statusCode);
+        }
+
+        [Fact]
+        private void MethodPostVideoAddsVideoInRepo()
+        {
+            _videoServiceMock.Setup(repo =&gt; repo.Add(_video4));
+            
+            var toPost = new ResponseObject {Data = _video4};
+
+            var actionResult = _controller.PostVideo(toPost);
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+            Assert.Equal(_video4, responseObject.Data);
+
+            _videoServiceMock.Verify(repo =&gt; repo.Add(_video4), Times.Once);
+        }
+
+        [Fact]
+        private void MethodPostThrowsExceptionWhenModelInvalid()
+        {
+            _controller.ModelState.AddModelError(&quot;fakeError&quot;, &quot;fakeError&quot;);
+
+            var response = (BadRequestObjectResult) _controller.PostVideo(new ResponseObject());
+            var statusCode = response.StatusCode;
+
+            Assert.Equal(400, statusCode);
+        }
+
+        [Fact]
+        private void MethodPostThrowsBadRequestWhenVideoIsNull()
+        {
+            var response = _controller.PostVideo(null);
+            var result = (BadRequestResult) response;
+            var statusCode = result.StatusCode;
+
+            Assert.Equal(400, statusCode);
+        }
+
+        [Fact]
+        private void MethodDeleteVideoDeletesVideoFromRepo()
+        {
+            _videoServiceMock.Setup(repo =&gt; repo.GetById(3)).Returns(_video3);
+            _videoServiceMock.Setup(repo =&gt; repo.Delete(_video3));
+
+            var actionResult = _controller.DeleteVideo(3);
+            Assert.IsType&lt;OkResult&gt;(actionResult);
+
+            _videoServiceMock.Verify(repo =&gt; repo.Delete(_video3), Times.Once);
+        }
+
+        [Fact]
+        private void MethodDeleteVideoThrowsExceptionWhenInvalidId()
+        {
+            _videoServiceMock.Setup(repo =&gt; repo.GetById(1)).Throws(new NullReferenceException());
+            _videoServiceMock.Setup(repo =&gt; repo.Delete(_video1)).Throws(new NullReferenceException());
+
+            var actionResult = _controller.DeleteVideo(1);
+            Assert.IsType&lt;BadRequestObjectResult&gt;(actionResult);
+
+            var response = (BadRequestObjectResult) _controller.DeleteVideo(1);
+            var statusCode = response.StatusCode;
+            Assert.Equal(400, statusCode);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[19,9,25,11,1],[27,9,33,11,1],[35,9,41,11,1],[43,9,49,11,1],[51,9,51,38,1],[52,9,52,10,1],[53,13,53,59,1],[54,13,54,74,1],[56,13,56,70,1],[57,9,57,10,1],[61,9,61,10,1],[62,13,62,77,1],[64,13,64,60,1],[65,13,65,57,1],[67,13,67,56,1],[68,13,68,64,1],[69,13,69,56,1],[70,9,70,10,1],[74,9,74,10,1],[75,13,75,90,1],[77,13,77,57,1],[78,13,78,57,1],[80,13,80,56,1],[81,13,81,64,1],[82,13,82,56,1],[83,9,83,10,1],[87,9,87,10,1],[88,13,88,79,1],[90,13,90,56,1],[91,13,91,57,1],[93,13,93,56,1],[94,13,94,64,1],[95,13,95,56,1],[96,9,96,10,1],[100,9,100,10,1],[101,13,101,102,1],[103,13,103,59,1],[104,13,104,64,1],[105,13,105,48,1],[106,13,106,43,1],[107,9,107,10,1],[111,9,111,10,1],[112,13,112,64,1],[114,13,114,62,1],[116,13,116,62,1],[117,13,117,57,1],[119,13,119,56,1],[120,13,120,64,1],[121,13,121,56,1],[123,13,123,77,1],[124,9,124,10,1],[128,9,128,10,1],[129,13,129,76,1],[131,13,131,97,1],[132,13,132,50,1],[134,13,134,43,1],[135,9,135,10,1],[139,9,139,10,1],[140,13,140,56,1],[141,13,141,54,1],[142,13,142,48,1],[144,13,144,43,1],[145,9,145,10,1],[149,9,149,10,1],[150,13,150,79,1],[151,13,151,67,1],[153,13,153,59,1],[154,13,154,51,1],[156,13,156,80,1],[157,9,157,10,1],[161,9,161,10,1],[162,13,162,99,1],[163,13,163,104,1],[165,13,165,59,1],[166,13,166,65,1],[168,13,168,80,1],[169,13,169,50,1],[170,13,170,43,1],[171,9,171,10,1]]);
+    </script>
+  </body>
+</html>

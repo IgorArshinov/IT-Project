@@ -1,0 +1,45 @@
+<div class="col-9 col-sm-10 col-lg-11">
+  <div class="functional-header">
+    <div class="filter-sub-header">
+    <mat-form-field class="filter-input" *ngIf="showFilter" [ngStyle]="{ flexGrow: '1'}">
+      <input matInput placeholder="Filter" [value]="filterValue" (input)="emitFilter($event)" />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="showCategoryFilter" >
+      <mat-label>Categorie</mat-label>
+      <mat-select id="selectCategory" [formControl]="categories" multiple [(value)]="selectedCategories" (openedChange)="emitCategoryFilter($event)">
+        <mat-option *ngFor="let category of categoryList" [value]="category">
+          {{category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="showNiveauFilter">
+      <mat-label>Niveau</mat-label>
+      <mat-select id="selectNiveau" [formControl]="niveaus" multiple [(value)]="selectedNiveaus" (openedChange)="emitNiveauFilter($event)">
+        <mat-option *ngFor="let niveau of niveauList" [value]="niveau">
+          {{niveau}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+
+    <button mat-raised-button class="btn new-button" (click)="emitCreateNewClick()">
+      <fa-icon [icon]="faPlus"></fa-icon>
+      Voeg toe
+    </button>
+  </div>
+
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th *ngFor="let key of titleConfiguration">{{ key }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data$" class="table-element">
+        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ item: item }"></ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div>

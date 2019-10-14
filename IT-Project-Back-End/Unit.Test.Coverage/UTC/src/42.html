@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.business\dto's\categorydto.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+namespace LiminoAPI.Business.DTO_s
+{
+    public class CategoryDTO
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public string CategoryType { get; set; }
+        
+        public override bool Equals(object obj)
+        {
+            var item = obj as CategoryDTO;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.Id.Equals(item.Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[5,26,5,30,1],[5,31,5,35,1],[6,30,6,34,0],[6,35,6,39,1],[7,34,7,38,0],[7,39,7,43,1],[8,38,8,42,0],[8,43,8,47,1],[11,9,11,10,1],[12,13,12,43,1],[14,13,14,30,1],[15,13,15,14,0],[16,17,16,30,0],[19,13,19,44,1],[20,9,20,10,1],[23,9,23,10,0],[24,13,24,37,0],[25,9,25,10,0]]);
+    </script>
+  </body>
+</html>

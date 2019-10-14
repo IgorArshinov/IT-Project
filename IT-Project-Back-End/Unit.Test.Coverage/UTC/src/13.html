@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi\migrations\20190413100011_exerciseandanswersadded.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace LiminoAPI.Migrations
+{
+    public partial class exerciseAndAnswersAdded : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: &quot;Exercises&quot;,
+                columns: table =&gt; new
+                {
+                    Id = table.Column&lt;long&gt;(nullable: false)
+                        .Annotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column&lt;string&gt;(nullable: true),
+                    Type = table.Column&lt;string&gt;(nullable: true),
+                    CategoryId = table.Column&lt;long&gt;(nullable: false),
+                    QuestionUrl = table.Column&lt;string&gt;(nullable: true),
+                    VideoUrl = table.Column&lt;string&gt;(nullable: true)
+                },
+                constraints: table =&gt;
+                {
+                    table.PrimaryKey(&quot;PK_Exercises&quot;, x =&gt; x.Id);
+                    table.ForeignKey(
+                        name: &quot;FK_Exercises_Categories_CategoryId&quot;,
+                        column: x =&gt; x.CategoryId,
+                        principalTable: &quot;Categories&quot;,
+                        principalColumn: &quot;Id&quot;,
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: &quot;Answers&quot;,
+                columns: table =&gt; new
+                {
+                    Id = table.Column&lt;long&gt;(nullable: false)
+                        .Annotation(&quot;SqlServer:ValueGenerationStrategy&quot;, SqlServerValueGenerationStrategy.IdentityColumn),
+                    ExerciseId = table.Column&lt;long&gt;(nullable: false),
+                    ImageUrl = table.Column&lt;string&gt;(nullable: true),
+                    AudioUrl = table.Column&lt;string&gt;(nullable: true),
+                    Correct = table.Column&lt;bool&gt;(nullable: false)
+                },
+                constraints: table =&gt;
+                {
+                    table.PrimaryKey(&quot;PK_Answers&quot;, x =&gt; x.Id);
+                    table.ForeignKey(
+                        name: &quot;FK_Answers_Exercises_ExerciseId&quot;,
+                        column: x =&gt; x.ExerciseId,
+                        principalTable: &quot;Exercises&quot;,
+                        principalColumn: &quot;Id&quot;,
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.UpdateData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 1L,
+                column: &quot;Name&quot;,
+                value: &quot;food&quot;);
+
+            migrationBuilder.UpdateData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 2L,
+                column: &quot;Name&quot;,
+                value: &quot;traffic&quot;);
+
+            migrationBuilder.UpdateData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 3L,
+                column: &quot;Name&quot;,
+                value: &quot;drinks&quot;);
+
+            migrationBuilder.InsertData(
+                table: &quot;Exercises&quot;,
+                columns: new[] { &quot;Id&quot;, &quot;CategoryId&quot;, &quot;Name&quot;, &quot;QuestionUrl&quot;, &quot;Type&quot;, &quot;VideoUrl&quot; },
+                values: new object[,]
+                {
+                    { 1L, 1L, &quot;First Question&quot;, &quot;questionUrl&quot;, &quot;Collage&quot;, &quot;videoUrl&quot; },
+                    { 2L, 2L, &quot;Second Question&quot;, &quot;questionUrl2&quot;, &quot;True Or False&quot;, &quot;videoUrl2&quot; },
+                    { 3L, 3L, &quot;Second Question&quot;, &quot;questionUrl3&quot;, &quot;Multiple Choice&quot;, &quot;videoUrl3&quot; }
+                });
+
+            migrationBuilder.InsertData(
+                table: &quot;Answers&quot;,
+                columns: new[] { &quot;Id&quot;, &quot;AudioUrl&quot;, &quot;Correct&quot;, &quot;ExerciseId&quot;, &quot;ImageUrl&quot; },
+                values: new object[,]
+                {
+                    { 1L, &quot;AudioUrl1&quot;, false, 1L, &quot;ImgUrl1&quot; },
+                    { 2L, &quot;AudioUrl2&quot;, false, 1L, &quot;ImgUrl2&quot; },
+                    { 3L, &quot;AudioUrl3&quot;, true, 1L, &quot;ImgUrl3&quot; },
+                    { 4L, &quot;AudioUrl1&quot;, false, 2L, &quot;ImgUrl1&quot; },
+                    { 5L, &quot;AudioUrl2&quot;, false, 2L, &quot;ImgUrl2&quot; },
+                    { 6L, &quot;AudioUrl3&quot;, true, 2L, &quot;ImgUrl3&quot; },
+                    { 7L, &quot;AudioUrl1&quot;, false, 3L, &quot;ImgUrl1&quot; },
+                    { 8L, &quot;AudioUrl2&quot;, false, 3L, &quot;ImgUrl2&quot; },
+                    { 9L, &quot;AudioUrl3&quot;, true, 3L, &quot;ImgUrl3&quot; }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: &quot;IX_Answers_ExerciseId&quot;,
+                table: &quot;Answers&quot;,
+                column: &quot;ExerciseId&quot;);
+
+            migrationBuilder.CreateIndex(
+                name: &quot;IX_Exercises_CategoryId&quot;,
+                table: &quot;Exercises&quot;,
+                column: &quot;CategoryId&quot;);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: &quot;Answers&quot;);
+
+            migrationBuilder.DropTable(
+                name: &quot;Exercises&quot;);
+
+            migrationBuilder.UpdateData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 1L,
+                column: &quot;Name&quot;,
+                value: &quot;eten&quot;);
+
+            migrationBuilder.UpdateData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 2L,
+                column: &quot;Name&quot;,
+                value: &quot;verkeer&quot;);
+
+            migrationBuilder.UpdateData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 3L,
+                column: &quot;Name&quot;,
+                value: &quot;drinken&quot;);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[9,9,9,10,0],[10,13,12,35,0],[12,35,21,18,0],[21,18,23,17,0],[23,17,23,18,0],[23,18,24,21,0],[24,21,24,65,0],[24,65,25,21,0],[25,21,30,62,0],[30,62,31,17,0],[31,17,31,18,0],[31,18,31,20,0],[10,13,31,20,0],[33,13,35,35,0],[35,35,43,18,0],[43,18,45,17,0],[45,17,45,18,0],[45,18,46,21,0],[46,21,46,63,0],[46,63,47,21,0],[47,21,52,62,0],[52,62,53,17,0],[53,17,53,18,0],[53,18,53,20,0],[33,13,53,20,0],[55,13,60,32,0],[62,13,67,35,0],[69,13,74,34,0],[76,13,84,20,0],[86,13,100,20,0],[102,13,105,39,0],[107,13,110,39,0],[111,9,111,10,0],[114,9,114,10,0],[115,13,116,34,0],[118,13,119,36,0],[121,13,126,32,0],[128,13,133,35,0],[135,13,140,35,0],[141,9,141,10,0]]);
+    </script>
+  </body>
+</html>

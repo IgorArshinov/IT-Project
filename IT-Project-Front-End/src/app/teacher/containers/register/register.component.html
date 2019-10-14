@@ -1,0 +1,17 @@
+<div>
+  <img src="../../../../assets/images/logo.png" class="media-object">
+</div>
+<div>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="form-group" autocomplete="off">
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" formControlName="email" placeholder="register email address">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="pwd" formControlName="password" placeholder="register password">
+    </div>
+    <div class="centerButton">
+      <button type="submit" class="btn btn-warning" [disabled]="registerForm.invalid">Register</button>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,16 @@
+// ----------------------------------------------------------------------
+// Containers
+// ----------------------------------------------------------------------
+
+.container {
+  @extend %container;
+  align-items: center;
+
+  &.bordered {
+    border: $container-border-thickness solid $brand-1;
+  }
+}
+
+.content-wrapper {
+  @extend %content-wrapper;
+}

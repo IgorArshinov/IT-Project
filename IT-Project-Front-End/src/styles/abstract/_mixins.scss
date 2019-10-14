@@ -1,0 +1,66 @@
+// ----------------------------------------------------------------------
+// Break-points
+// ----------------------------------------------------------------------
+
+// 348 px
+$xs-mobile: 21.75em;
+// 576 px
+$mobile: 36em;
+// 768 px
+$tablet: 48em;
+// 992 px
+$desktop: 62em;
+// 1100 px
+$large-screens: 68.75em;
+
+// ----------------------------------------------------------------------
+// Mixins
+// ----------------------------------------------------------------------
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box; /* stops bg color from leaking outside the border: */
+}
+
+@mixin xs-mobile {
+  @media (min-width: #{$xs-mobile}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (min-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin tablet-and-mobile {
+  @media (max-width: #{$desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: #{$tablet}) and (max-width: #{$desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin large-screens {
+  @media (min-width: #{$large-screens}) {
+    @content;
+  }
+}

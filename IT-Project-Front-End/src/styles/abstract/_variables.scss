@@ -1,0 +1,145 @@
+// ----------------------------------------------------------------------
+// Variables
+// ----------------------------------------------------------------------
+
+// Font imports
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic');
+@import url('https://fonts.googleapis.com/css?family=Laila:300,regular,500,600,700');
+
+// ----------------------------------------------------------------------
+// Base
+// ----------------------------------------------------------------------
+
+// Brand colors
+$brand-1: #e3b150; // rgba(227, 177, 80, 1)
+$brand-2: #618985; // rgba(97, 137, 133, 1)
+$brand-3: #96bbbb; // rgba(150, 187, 187, 1)
+$brand-4: #414535; // rgba(65, 69, 53, 1)
+$brand-5: #5e0b15; // rgba(94, 11, 21, 1)
+
+$text-primary: #454545;
+$titles: $brand-2;
+
+// Neutral colors
+$black: #000000;
+$white: #ffffff;
+$dark-gray-1: #333333;
+$dark-gray-2: #666666;
+$dark-gray-3: #999999;
+
+// Utility colors
+$error: #e20d0d;
+$positive: #2cc200;
+
+// Fonts
+$base-font-size: 1rem; // 1rem = 16px
+
+$primary-font: 'Lato';
+$secondary-font: 'Laila';
+
+// Paragraphs
+$body-font: $primary-font;
+$body-font-weight: 400;
+$body-color: $dark-gray-1;
+$body-mobile-font-size: 0.875rem;
+$body-mobile-line-height: 1.625rem;
+$body-desktop-font-size: 1rem;
+$body-desktop-line-height: 1.875rem;
+
+$p-margin-bottom: 1em;
+$p-lead-font: $primary-font;
+$p-lead-font-size: 1.25em;
+$p-lead-font-lineheight: 1.6em;
+$p-lead-font-weight: 300;
+$p-lead-letter-spacing: 0.0625em;
+
+$strong-font-weight: 700;
+
+// Anchor tags
+$a-font-weight: 600;
+$a-color: $brand-4;
+$a-on-event-color: $black;
+
+// Headings
+$header-1-font: $primary-font;
+$header-1-font-weight: 300;
+$header-1-strong-font-weight: 400;
+$header-1-font-size: 2.3125em;
+$header-1-line-height: 1.45em;
+$header-1-color: $brand-2;
+
+$header-2-font: $primary-font;
+$header-2-font-weight: 400;
+$header-2-strong-font-weight: 600;
+$header-2-font-size: 1.875em;
+$header-2-line-height: 1.45em;
+$header-2-color: $brand-2;
+
+$header-3-font: $primary-font;
+$header-3-font-weight: 600;
+$header-3-font-size: 1.5em;
+$header-3-line-height: 1.45em;
+$header-3-color: $brand-2;
+
+$header-4-font: $primary-font;
+$header-4-font-weight: 700;
+$header-4-font-size: 1.375em;
+$header-4-line-height: 1.45em;
+$header-4-color: $brand-2;
+
+$header-5-font: $primary-font;
+$header-5-font-weight: 700;
+$header-5-font-size: 1.125em;
+$header-5-line-height: 1.45em;
+$header-5-color: $brand-2;
+
+$header-6-font: $primary-font;
+$header-6-font-weight: 700;
+$header-6-font-size: 1em;
+$header-6-line-height: 1.45em;
+$header-6-color: $dark-gray-1;
+
+// ----------------------------------------------------------------------
+// Components
+// ----------------------------------------------------------------------
+
+// Logo
+$logo-width: 30em;
+$logo-width-desktop: 40em;
+
+// Nav home
+$nav-home-abs-position: 1.5em;
+$nav-home-img-size: 3em;
+$nav-home-img-tablet-size: 5em;
+
+// Video
+$video-card-border-color: $brand-3;
+
+// Collage
+$collage-container-border-color: $brand-3;
+
+// TrueOrFalse
+$trueorfalse-container-border-color: $brand-3;
+
+// ----------------------------------------------------------------------
+// Layout
+// ----------------------------------------------------------------------
+
+// Containers
+$container-padding: 0.625em;
+$container-border-thickness: 0.625em;
+$content-wrapper-margin-bottom: 0.625em;
+
+// ----------------------------------------------------------------------
+// Pages
+// ----------------------------------------------------------------------
+
+// Home
+$menu-card-btn-img-size: 8em;
+$menu-card-btn-img-size-desktop: 10em;
+
+// Z-indexes
+$z-index-neg: -10;
+$z-index-1: 10;
+$z-index-2: 20;
+$z-index-3: 30;

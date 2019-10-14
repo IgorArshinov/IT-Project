@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiminoAPI", "LiminoAPI\LiminoAPI.csproj", "{413336DA-7CBA-4E5F-9DD4-8147159E632D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiminoAPI.Data", "LiminoAPI.Data\LiminoAPI.Data.csproj", "{5E152421-35BE-4155-B10F-A689330453AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiminoAPI.Business", "LiminoAPI.Business\LiminoAPI.Business.csproj", "{D57AD2DB-CA47-4D1E-969E-F594BB547D36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiminoAPI.Tests", "LiminoAPI.Tests\LiminoAPI.Tests.csproj", "{6F0260A7-ED92-4EB2-912B-3A662BC4BA90}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiminoAPI.Business.Tests", "LiminoAPI.Business.Tests\LiminoAPI.Business.Tests.csproj", "{61B28052-97E1-4EF3-9BFE-A7624DED5B4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{413336DA-7CBA-4E5F-9DD4-8147159E632D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413336DA-7CBA-4E5F-9DD4-8147159E632D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413336DA-7CBA-4E5F-9DD4-8147159E632D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413336DA-7CBA-4E5F-9DD4-8147159E632D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E152421-35BE-4155-B10F-A689330453AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E152421-35BE-4155-B10F-A689330453AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E152421-35BE-4155-B10F-A689330453AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E152421-35BE-4155-B10F-A689330453AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57AD2DB-CA47-4D1E-969E-F594BB547D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57AD2DB-CA47-4D1E-969E-F594BB547D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57AD2DB-CA47-4D1E-969E-F594BB547D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57AD2DB-CA47-4D1E-969E-F594BB547D36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0260A7-ED92-4EB2-912B-3A662BC4BA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0260A7-ED92-4EB2-912B-3A662BC4BA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0260A7-ED92-4EB2-912B-3A662BC4BA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0260A7-ED92-4EB2-912B-3A662BC4BA90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B28052-97E1-4EF3-9BFE-A7624DED5B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B28052-97E1-4EF3-9BFE-A7624DED5B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B28052-97E1-4EF3-9BFE-A7624DED5B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B28052-97E1-4EF3-9BFE-A7624DED5B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB4F3A41-657E-442E-819F-60619F402E4F}
+	EndGlobalSection
+EndGlobal

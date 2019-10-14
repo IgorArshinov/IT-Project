@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.tests\categorycontrollertest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using LiminoAPI.Business.DTO_s;
+using LiminoAPI.Business.Services;
+using LiminoAPI.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using Xunit;
+
+namespace LiminoAPI.Tests
+{
+    public class CategoryControllerTest : IDisposable
+    {
+        private readonly CategoryController _controller;
+        private readonly Mock&lt;ICategoryService&gt; _serviceMock;
+
+        private readonly IList&lt;CategoryDTO&gt; _categories;
+        private readonly IList&lt;CategoryDTO&gt; _videoCategories;
+        private readonly IList&lt;CategoryDTO&gt; _audioCategories;
+        private readonly IList&lt;CategoryDTO&gt; _conversationCategories;
+
+
+        private readonly CategoryDTO _video1 = new CategoryDTO
+            {CategoryType = &quot;video&quot;, Id = 1, ImageUrl = &quot;imageUrl1&quot;, Name = &quot;eten&quot;};
+
+        private readonly CategoryDTO _audio1 = new CategoryDTO
+            {CategoryType = &quot;audio&quot;, Id = 2, ImageUrl = &quot;imageUrl2&quot;, Name = &quot;verkeer&quot;};
+
+        private readonly CategoryDTO _audio2 = new CategoryDTO
+            {CategoryType = &quot;audio&quot;, Id = 3, ImageUrl = &quot;imageUrl3&quot;, Name = &quot;drinken&quot;};
+
+        private readonly CategoryDTO _conversation1 = new CategoryDTO
+            {CategoryType = &quot;conversation&quot;, Id = 4, ImageUrl = &quot;imageUrl4&quot;, Name = &quot;wassen&quot;};
+
+
+        public CategoryControllerTest()
+        {
+            _serviceMock = new Mock&lt;ICategoryService&gt;();
+
+            _controller = new CategoryController(_serviceMock.Object);
+
+            _categories = new List&lt;CategoryDTO&gt; {_video1, _audio1, _audio2};
+            _videoCategories = new List&lt;CategoryDTO&gt; {_video1};
+            _audioCategories = new List&lt;CategoryDTO&gt; {_audio1, _audio2};
+            _conversationCategories = new List&lt;CategoryDTO&gt; {_conversation1};
+        }
+
+        public void Dispose()
+        {
+        }
+
+        [Fact]
+        private void GetCategoriesWithoutParamsReturnsAllCategories()
+        {
+            _serviceMock.Setup(service =&gt; service.GetAllCategories()).Returns(_categories);
+
+            var actionResult = _controller.GetCategories();
+
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_categories, responseObject.Data);
+        }
+
+        [Fact]
+        private void GetCategoriesWithParameterVideoReturnsCorrectCategories()
+        {
+            _serviceMock.Setup(service =&gt; service.GetCategoriesByType(&quot;video&quot;)).Returns(_videoCategories);
+
+            var actionResult = _controller.GetCategories(&quot;video&quot;);
+
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_videoCategories, responseObject.Data);
+        }
+        
+        [Fact]
+        private void GetCategoriesWithParameterAudioReturnsCorrectCategories()
+        {
+            _serviceMock.Setup(service =&gt; service.GetCategoriesByType(&quot;audio&quot;)).Returns(_audioCategories);
+
+            var actionResult = _controller.GetCategories(&quot;audio&quot;);
+
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_audioCategories, responseObject.Data);
+        }
+        
+        [Fact]
+        private void GetCategoriesWithParameterConversationReturnsCorrectCategories()
+        {
+            _serviceMock.Setup(service =&gt; service.GetCategoriesByType(&quot;conversation&quot;)).Returns(_conversationCategories);
+
+            var actionResult = _controller.GetCategories(&quot;conversation&quot;);
+
+            Assert.IsType&lt;OkObjectResult&gt;(actionResult);
+            var result = (OkObjectResult) actionResult;
+            var responseObject = (ResponseObject) result.Value;
+
+            Assert.Equal(_conversationCategories, responseObject.Data);
+        }
+        
+        [Fact]
+        private void GetCategoriesReturnsNothingForOtherCategories()
+        {
+            _serviceMock.Setup(service =&gt; service.GetCategoriesByType(&quot;abcd&quot;)).Throws&lt;InvalidEnumArgumentException&gt;();
+
+            var actionResult = _controller.GetCategories(&quot;abcd&quot;);
+
+            Assert.IsType&lt;BadRequestObjectResult&gt;(actionResult);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[24,9,25,85,1],[27,9,28,88,1],[30,9,31,88,1],[33,9,34,94,1],[37,9,37,40,1],[38,9,38,10,1],[39,13,39,57,1],[41,13,41,71,1],[43,13,43,77,1],[44,13,44,64,1],[45,13,45,73,1],[46,13,46,78,1],[47,9,47,10,1],[50,9,50,10,1],[51,9,51,10,1],[55,9,55,10,1],[56,13,56,92,1],[58,13,58,60,1],[60,13,60,57,1],[61,13,61,56,1],[62,13,62,64,1],[64,13,64,60,1],[65,9,65,10,1],[69,9,69,10,1],[70,13,70,107,1],[72,13,72,67,1],[74,13,74,57,1],[75,13,75,56,1],[76,13,76,64,1],[78,13,78,65,1],[79,9,79,10,1],[83,9,83,10,1],[84,13,84,107,1],[86,13,86,67,1],[88,13,88,57,1],[89,13,89,56,1],[90,13,90,64,1],[92,13,92,65,1],[93,9,93,10,1],[97,9,97,10,1],[98,13,98,121,1],[100,13,100,74,1],[102,13,102,57,1],[103,13,103,56,1],[104,13,104,64,1],[106,13,106,72,1],[107,9,107,10,1],[111,9,111,10,1],[112,13,112,119,1],[114,13,114,66,1],[116,13,116,65,1],[117,9,117,10,1]]);
+    </script>
+  </body>
+</html>

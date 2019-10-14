@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi\migrations\20190330102309_dataseed.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace LiminoAPI.Migrations
+{
+    public partial class dataseed : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.InsertData(
+                table: &quot;Categories&quot;,
+                columns: new[] { &quot;Id&quot;, &quot;CategoryType&quot;, &quot;ImageUrl&quot;, &quot;Name&quot; },
+                values: new object[] { 1L, &quot;Video&quot;, &quot;imageUrl1&quot;, &quot;eten&quot; });
+
+            migrationBuilder.InsertData(
+                table: &quot;Categories&quot;,
+                columns: new[] { &quot;Id&quot;, &quot;CategoryType&quot;, &quot;ImageUrl&quot;, &quot;Name&quot; },
+                values: new object[] { 2L, &quot;Audio&quot;, &quot;imageUrl2&quot;, &quot;verkeer&quot; });
+
+            migrationBuilder.InsertData(
+                table: &quot;Categories&quot;,
+                columns: new[] { &quot;Id&quot;, &quot;CategoryType&quot;, &quot;ImageUrl&quot;, &quot;Name&quot; },
+                values: new object[] { 3L, &quot;Audio&quot;, &quot;imageUrl3&quot;, &quot;drinken&quot; });
+
+            migrationBuilder.InsertData(
+                table: &quot;Audios&quot;,
+                columns: new[] { &quot;Id&quot;, &quot;CategoryId&quot;, &quot;FragmentUrl&quot;, &quot;ImageUrl&quot;, &quot;Name&quot; },
+                values: new object[,]
+                {
+                    { 1L, 1L, &quot;audioUrl1&quot;, &quot;imageUrl4&quot;, &quot;Dit is een banaan&quot; },
+                    { 2L, 1L, &quot;audioUrl3&quot;, &quot;imageUrl7&quot;, &quot;Dit is een appel&quot; },
+                    { 3L, 2L, &quot;audioUrl2&quot;, &quot;imageUrl5&quot;, &quot;welke bus moet ik nemen?&quot; },
+                    { 4L, 2L, &quot;audioUrl2&quot;, &quot;imageUrl8&quot;, &quot;hoe neem ik een taxi?&quot; },
+                    { 5L, 3L, &quot;audioUrl3&quot;, &quot;imageUrl5&quot;, &quot;Mag ik een glas water?&quot; }
+                });
+
+            migrationBuilder.InsertData(
+                table: &quot;Videos&quot;,
+                columns: new[] { &quot;Id&quot;, &quot;CategoryId&quot;, &quot;Name&quot;, &quot;VideoUrl&quot; },
+                values: new object[,]
+                {
+                    { 1L, 1L, &quot;Video van een banaan&quot;, &quot;VideoUrl1&quot; },
+                    { 4L, 1L, &quot;Video van een appel&quot;, &quot;VideoUrl2&quot; },
+                    { 2L, 2L, &quot;Video van een bus&quot;, &quot;VideoUrl2&quot; },
+                    { 3L, 3L, &quot;Video van een glas water&quot;, &quot;VideoUrl3&quot; }
+                });
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DeleteData(
+                table: &quot;Audios&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 1L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Audios&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 2L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Audios&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 3L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Audios&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 4L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Audios&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 5L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Videos&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 1L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Videos&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 2L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Videos&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 3L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Videos&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 4L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 1L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 2L);
+
+            migrationBuilder.DeleteData(
+                table: &quot;Categories&quot;,
+                keyColumn: &quot;Id&quot;,
+                keyValue: 3L);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,9,8,10,0],[9,13,12,76,0],[14,13,17,79,0],[19,13,22,79,0],[24,13,34,20,0],[36,13,45,20,0],[46,9,46,10,0],[49,9,49,10,0],[50,13,53,31,0],[55,13,58,31,0],[60,13,63,31,0],[65,13,68,31,0],[70,13,73,31,0],[75,13,78,31,0],[80,13,83,31,0],[85,13,88,31,0],[90,13,93,31,0],[95,13,98,31,0],[100,13,103,31,0],[105,13,108,31,0],[109,9,109,10,0]]);
+    </script>
+  </body>
+</html>

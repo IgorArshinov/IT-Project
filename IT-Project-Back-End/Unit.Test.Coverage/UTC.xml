@@ -1,0 +1,617 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root CoveredStatements="946" TotalStatements="1461" CoveragePercent="65" ReportType="Xml" DotCoverVersion="2018.2.3">
+  <Project Name="LiminoAPI" CoveredStatements="161" TotalStatements="529" CoveragePercent="30">
+    <Namespace Name="LiminoAPI" CoveredStatements="2" TotalStatements="53" CoveragePercent="4">
+      <Type Name="Program" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+        <Method Name="CreateWebHostBuilder(string[]):IWebHostBuilder" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        <Method Name="Main(string[]):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+      <Type Name="ResponseObject" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+        <AutoProperty Name="Data:object" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+      </Type>
+      <Type Name="Startup" CoveredStatements="0" TotalStatements="47" CoveragePercent="0">
+        <Constructor Name="Startup(IConfiguration)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+        <AutoProperty Name="Configuration:IConfiguration" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <Method Name="Configure(IApplicationBuilder,IHostingEnvironment):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+        <Method Name="ConfigureServices(IServiceCollection):void" CoveredStatements="0" TotalStatements="31" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="14" CoveragePercent="0" />
+          <AnonymousMethod Name="(DbContextOptionsBuilder):void" CoveredStatements="0" TotalStatements="9" CoveragePercent="0">
+            <OwnCoverage CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+            <AnonymousMethod Name="(SqlServerDbContextOptionsBuilder):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+            <AnonymousMethod Name="(WarningsConfigurationBuilder):void" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          </AnonymousMethod>
+          <AnonymousMethod Name="(MvcJsonOptions):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <AnonymousMethod Name="(CorsOptions):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+            <OwnCoverage CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+            <AnonymousMethod Name="(CorsPolicyBuilder):void" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          </AnonymousMethod>
+        </Method>
+      </Type>
+    </Namespace>
+    <Namespace Name="LiminoAPI.Controllers" CoveredStatements="159" TotalStatements="162" CoveragePercent="98">
+      <Type Name="AudioController" CoveredStatements="55" TotalStatements="55" CoveragePercent="100">
+        <Constructor Name="AudioController(IAudioService)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="AddNewAudio(AudioDTO):IActionResult" CoveredStatements="12" TotalStatements="12" CoveragePercent="100" />
+        <Method Name="DeleteAudio(long):IActionResult" CoveredStatements="12" TotalStatements="12" CoveragePercent="100" />
+        <Method Name="GetAll(Nullable&lt;long&gt;):IActionResult" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="GetAudioById(long):IActionResult" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="UpdateAudio(AudioDTO):IActionResult" CoveredStatements="11" TotalStatements="11" CoveragePercent="100" />
+      </Type>
+      <Type Name="CategoryController" CoveredStatements="12" TotalStatements="12" CoveragePercent="100">
+        <Constructor Name="CategoryController(ICategoryService)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="GetCategories(string):IActionResult" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+      </Type>
+      <Type Name="ExerciseController" CoveredStatements="51" TotalStatements="54" CoveragePercent="94">
+        <Constructor Name="ExerciseController(IExerciseService)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="DeleteExercise(long):IActionResult" CoveredStatements="9" TotalStatements="9" CoveragePercent="100" />
+        <Method Name="GetExerciseById(long):IActionResult" CoveredStatements="10" TotalStatements="10" CoveragePercent="100" />
+        <Method Name="GetExercises(Nullable&lt;long&gt;,string):IActionResult" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="PostExercise(ResponseObject):IActionResult" CoveredStatements="12" TotalStatements="12" CoveragePercent="100" />
+        <Method Name="UpdateExercise(ResponseObject):IActionResult" CoveredStatements="8" TotalStatements="11" CoveragePercent="73" />
+      </Type>
+      <Type Name="VideosController" CoveredStatements="41" TotalStatements="41" CoveragePercent="100">
+        <Constructor Name="VideosController(IVideoService)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="DeleteVideo(long):IActionResult" CoveredStatements="10" TotalStatements="10" CoveragePercent="100" />
+        <Method Name="GetVideo(long):IActionResult" CoveredStatements="10" TotalStatements="10" CoveragePercent="100" />
+        <Method Name="GetVideos(Nullable&lt;long&gt;):IActionResult" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="PostVideo(ResponseObject):IActionResult" CoveredStatements="13" TotalStatements="13" CoveragePercent="100" />
+      </Type>
+    </Namespace>
+    <Namespace Name="LiminoAPI.Migrations" CoveredStatements="0" TotalStatements="314" CoveragePercent="0">
+      <Type Name="AppDbContextModelSnapshot" CoveredStatements="0" TotalStatements="77" CoveragePercent="0">
+        <Method Name="BuildModel(ModelBuilder):void" CoveredStatements="0" TotalStatements="77" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="9" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        </Method>
+      </Type>
+      <Type Name="dataseed" CoveredStatements="0" TotalStatements="65" CoveragePercent="0">
+        <Method Name="BuildTargetModel(ModelBuilder):void" CoveredStatements="0" TotalStatements="44" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="9" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        </Method>
+        <Method Name="Down(MigrationBuilder):void" CoveredStatements="0" TotalStatements="14" CoveragePercent="0" />
+        <Method Name="Up(MigrationBuilder):void" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+      </Type>
+      <Type Name="exerciseAndAnswersAdded" CoveredStatements="0" TotalStatements="105" CoveragePercent="0">
+        <Method Name="BuildTargetModel(ModelBuilder):void" CoveredStatements="0" TotalStatements="77" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="9" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="12" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        </Method>
+        <Method Name="Down(MigrationBuilder):void" CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+        <Method Name="Up(MigrationBuilder):void" CoveredStatements="0" TotalStatements="21" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="11" CoveragePercent="0" />
+          <AnonymousMethod Name="(ColumnsBuilder):{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <AnonymousMethod Name="(CreateTableBuilder&lt;{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}&gt;):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <AnonymousMethod Name="(ColumnsBuilder):{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <AnonymousMethod Name="(CreateTableBuilder&lt;{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}&gt;):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+        </Method>
+      </Type>
+      <Type Name="intial_migration" CoveredStatements="0" TotalStatements="67" CoveragePercent="0">
+        <Method Name="BuildTargetModel(ModelBuilder):void" CoveredStatements="0" TotalStatements="41" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="10" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="8" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="9" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(EntityTypeBuilder):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        </Method>
+        <Method Name="Down(MigrationBuilder):void" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+        <Method Name="Up(MigrationBuilder):void" CoveredStatements="0" TotalStatements="21" CoveragePercent="0">
+          <OwnCoverage CoveredStatements="0" TotalStatements="7" CoveragePercent="0" />
+          <AnonymousMethod Name="(ColumnsBuilder):{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <AnonymousMethod Name="(CreateTableBuilder&lt;{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}&gt;):void" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+          <AnonymousMethod Name="(ColumnsBuilder):{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <AnonymousMethod Name="(CreateTableBuilder&lt;{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}&gt;):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+          <AnonymousMethod Name="(ColumnsBuilder):{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <AnonymousMethod Name="(CreateTableBuilder&lt;{OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;,OperationBuilder&lt;AddColumnOperation&gt;}&gt;):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+        </Method>
+      </Type>
+    </Namespace>
+  </Project>
+  <Project Name="LiminoAPI.Business" CoveredStatements="194" TotalStatements="228" CoveragePercent="85">
+    <Namespace Name="LiminoAPI.Business" CoveredStatements="35" TotalStatements="43" CoveragePercent="81">
+      <Type Name="AnswerDTO" CoveredStatements="6" TotalStatements="6" CoveragePercent="100">
+        <AutoProperty Name="AudioUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Correct:bool" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="ImageUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+      </Type>
+      <Type Name="ExerciseDTO" CoveredStatements="16" TotalStatements="19" CoveragePercent="84">
+        <AutoProperty Name="Answers:List&lt;AnswerDTO&gt;" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="CategoryId:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="QuestionUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Type:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="VideoUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <Method Name="Equals(object):bool" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="GetHashCode():int" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+      <Type Name="VideoDTO" CoveredStatements="13" TotalStatements="18" CoveragePercent="72">
+        <AutoProperty Name="CategoryId:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Id:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Name:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="VideoUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <Method Name="Equals(object):bool" CoveredStatements="5" TotalStatements="7" CoveragePercent="71" />
+        <Method Name="GetHashCode():int" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+    </Namespace>
+    <Namespace Name="LiminoAPI.Business.DTO_s" CoveredStatements="25" TotalStatements="38" CoveragePercent="66">
+      <Type Name="AudioDTO" CoveredStatements="15" TotalStatements="20" CoveragePercent="75">
+        <AutoProperty Name="CategoryId:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="FragmentUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Id:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="ImageUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Name:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <Method Name="Equals(object):bool" CoveredStatements="5" TotalStatements="7" CoveragePercent="71" />
+        <Method Name="GetHashCode():int" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+      <Type Name="CategoryDTO" CoveredStatements="10" TotalStatements="18" CoveragePercent="56">
+        <AutoProperty Name="CategoryType:string" CoveredStatements="1" TotalStatements="2" CoveragePercent="50">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Id:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="ImageUrl:string" CoveredStatements="1" TotalStatements="2" CoveragePercent="50">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Name:string" CoveredStatements="1" TotalStatements="2" CoveragePercent="50">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <Method Name="Equals(object):bool" CoveredStatements="5" TotalStatements="7" CoveragePercent="71" />
+        <Method Name="GetHashCode():int" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+    </Namespace>
+    <Namespace Name="LiminoAPI.Business.Services" CoveredStatements="134" TotalStatements="147" CoveragePercent="91">
+      <Type Name="AudioService" CoveredStatements="32" TotalStatements="33" CoveragePercent="97">
+        <Constructor Name="AudioService(IBaseRepository&lt;Audio&gt;)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="Add(AudioDTO):long" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="Delete(long):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="GetAll():IEnumerable&lt;AudioDTO&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="GetAllAudiosByCategoryId(long):IEnumerable&lt;AudioDTO&gt;" CoveredStatements="3" TotalStatements="4" CoveragePercent="75">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Audio):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </Method>
+        <Method Name="GetAudioById(long):AudioDTO" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="MapAudioDtoToAudioEnt(AudioDTO):Audio" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="MapAudioEntToAudioDto(Audio):AudioDTO" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="MapIEAudioEntToAudioDto(IEnumerable&lt;Audio&gt;):IEnumerable&lt;AudioDTO&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Audio):AudioDTO" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="Update(AudioDTO):AudioDTO" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+      </Type>
+      <Type Name="CategoryService" CoveredStatements="16" TotalStatements="20" CoveragePercent="80">
+        <Constructor Name="CategoryService(IBaseRepository&lt;Category&gt;)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Constructor Name="CategoryService()" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="GetAllCategories():IEnumerable&lt;CategoryDTO&gt;" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="GetCategoriesByType(string):IEnumerable&lt;CategoryDTO&gt;" CoveredStatements="5" TotalStatements="6" CoveragePercent="83">
+          <OwnCoverage CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+          <AnonymousMethod Name="(Category):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </Method>
+        <Method Name="MapEntityListToDTOList(IEnumerable&lt;Category&gt;):IEnumerable&lt;CategoryDTO&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Category):CategoryDTO" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+      </Type>
+      <Type Name="ExerciseService" CoveredStatements="51" TotalStatements="54" CoveragePercent="94">
+        <Constructor Name="ExerciseService(IBaseRepository&lt;Exercise&gt;)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="Add(ExerciseDTO):long" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="Delete(long):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="GetAll():IEnumerable&lt;ExerciseDTO&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="GetAllExercisesByTypeAndCategory(string,Nullable&lt;long&gt;):IEnumerable&lt;ExerciseDTO&gt;" CoveredStatements="5" TotalStatements="7" CoveragePercent="71">
+          <OwnCoverage CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+          <AnonymousMethod Name="(Exercise):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <AnonymousMethod Name="(Exercise):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </Method>
+        <Method Name="GetAllForCategoryId(Nullable&lt;long&gt;):IEnumerable&lt;ExerciseDTO&gt;" CoveredStatements="3" TotalStatements="4" CoveragePercent="75">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Exercise):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </Method>
+        <Method Name="GetById(long):ExerciseDTO" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+        <Method Name="MapAnswerDTOListToAnswerList(IEnumerable&lt;AnswerDTO&gt;):List&lt;Answer&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(AnswerDTO):Answer" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MapAnswersListToAnswerDTOList(IEnumerable&lt;Answer&gt;):List&lt;AnswerDTO&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Answer):AnswerDTO" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MapExerciseDTOToExercise(ExerciseDTO):Exercise" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="MapExerciseListToExerciseDTOList(IEnumerable&lt;Exercise&gt;):IEnumerable&lt;ExerciseDTO&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Exercise):ExerciseDTO" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MapExerciseToExerciseDTO(Exercise):ExerciseDTO" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="Put(ExerciseDTO):void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+      </Type>
+      <Type Name="VideoService" CoveredStatements="35" TotalStatements="40" CoveragePercent="88">
+        <Constructor Name="VideoService(IBaseRepository&lt;Video&gt;)" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="Add(VideoDTO):long" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="Delete(VideoDTO):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="GetAll():IEnumerable&lt;VideoDTO&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="GetAllByCategoryId(Nullable&lt;long&gt;):IEnumerable&lt;VideoDTO&gt;" CoveredStatements="3" TotalStatements="4" CoveragePercent="75">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Video):bool" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </Method>
+        <Method Name="GetById(long):VideoDTO" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+        <Method Name="MapEntityListToDtoList(IEnumerable&lt;Video&gt;):IEnumerable&lt;VideoDTO&gt;" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="(Video):VideoDTO" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MapVideoDtoToVideo(VideoDTO):Video" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="MapVideoToVideoDto(Video):VideoDTO" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="VideoExists(long):bool" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+      </Type>
+    </Namespace>
+  </Project>
+  <Project Name="LiminoAPI.Business.Tests" CoveredStatements="239" TotalStatements="241" CoveragePercent="99">
+    <Namespace Name="LiminoAPI.Business.Tests" CoveredStatements="239" TotalStatements="239" CoveragePercent="100">
+      <Type Name="AudioServiceTest" CoveredStatements="52" TotalStatements="52" CoveragePercent="100">
+        <Constructor Name="AudioServiceTest()" CoveredStatements="15" TotalStatements="15" CoveragePercent="100" />
+        <Constructor Name="AudioServiceTest()" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        <Method Name="AddCallsRepositoryWithDTO():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="DeleteCallsRepositoryWithDTO():void" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+        <Method Name="GetAllReturnsAllAudio():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="GetAllReturnsAllAudioByCategoryId():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="GetAudioByIdReturnsCorrectAudio():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="UpdateCallsRepositoryWithDTO():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+      </Type>
+      <Type Name="CategoryServiceTest" CoveredStatements="37" TotalStatements="37" CoveragePercent="100">
+        <Constructor Name="CategoryServiceTest()" CoveredStatements="21" TotalStatements="21" CoveragePercent="100" />
+        <Method Name="Dispose():void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+        <Method Name="GetAllCategoriesReturnsAllCategoriesAsDTOs():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="GetCategoriesByTypeReturnsExpectedCategories():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="GetCategoriesByTypeThrowsOnUnknownType():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+          <AnonymousMethod Name="():object" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+      </Type>
+      <Type Name="ExerciseServiceTest" CoveredStatements="100" TotalStatements="100" CoveragePercent="100">
+        <Constructor Name="ExerciseServiceTest()" CoveredStatements="13" TotalStatements="13" CoveragePercent="100" />
+        <Constructor Name="ExerciseServiceTest()" CoveredStatements="20" TotalStatements="20" CoveragePercent="100" />
+        <Method Name="MethodAddExerciseReturnsCorrectResponse():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodDeleteCallsDeleteInRepo():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="MethodDeleteThrowsExceptionWhenInvalid():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+          <AnonymousMethod Name="():void" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MethodGetAllExercisesByTypeAndCategoryReturnsCorrectResponse():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetAllExercisesByTypeAndCategoryReturnsCorrectResponseWithCapitalInType():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetAllExercisesByTypeAndCategoryReturnsCorrectResponseWithCategoryTypeIsNull():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetAllExercisesByTypeAndCategoryThrowsExceptionWhenTypeIsNotKnown():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+          <AnonymousMethod Name="():object" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MethodGetAllReturnsListOfExercise():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetByCategoryIdReturnsCorrectExercises():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetByIdReturnsCorrectExercise():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetByIdThrowsExceptionWhenIdIsInvalid():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+          <AnonymousMethod Name="():object" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MethodGetByIdTrowsExceptionWhenIdDoesNotExist():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+          <AnonymousMethod Name="():object" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MethodPutCallsPutInRepo():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+      </Type>
+      <Type Name="VideoServiceTest" CoveredStatements="50" TotalStatements="50" CoveragePercent="100">
+        <Constructor Name="VideoServiceTest()" CoveredStatements="15" TotalStatements="15" CoveragePercent="100" />
+        <Method Name="MethodAddReturnsCorrectResponse():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodDeleteCallsDeleteInRepo():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodDeleteThrowsExceptionWhenInvalid():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+          <AnonymousMethod Name="():void" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+        <Method Name="MethodGetAllByCategoryIdReturnsListOfVideoDto():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetAllReturnsListOfVideoDto():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetByIdReturnsCorrectVideo():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodGetByIdThrowsExceptionWhenIdIsInvalid():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100">
+          <OwnCoverage CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+          <AnonymousMethod Name="():object" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </Method>
+      </Type>
+    </Namespace>
+    <Type Name="AutoGeneratedProgram" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+      <Method Name="Main(string[]):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+    </Type>
+  </Project>
+  <Project Name="LiminoAPI.Data" CoveredStatements="51" TotalStatements="160" CoveragePercent="32">
+    <Namespace Name="LiminoAPI.Data" CoveredStatements="0" TotalStatements="32" CoveragePercent="0">
+      <Type Name="AppDbContext" CoveredStatements="0" TotalStatements="32" CoveragePercent="0">
+        <Constructor Name="AppDbContext(DbContextOptions&lt;AppDbContext&gt;)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <AutoProperty Name="Answers:DbSet&lt;Answer&gt;" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <AutoProperty Name="Audios:DbSet&lt;Audio&gt;" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <AutoProperty Name="Categories:DbSet&lt;Category&gt;" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <AutoProperty Name="Exercises:DbSet&lt;Exercise&gt;" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <AutoProperty Name="Videos:DbSet&lt;Video&gt;" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <Method Name="OnModelCreating(ModelBuilder):void" CoveredStatements="0" TotalStatements="19" CoveragePercent="0" />
+      </Type>
+    </Namespace>
+    <Namespace Name="LiminoAPI.Data.Models" CoveredStatements="51" TotalStatements="75" CoveragePercent="68">
+      <Type Name="Answer" CoveredStatements="8" TotalStatements="12" CoveragePercent="67">
+        <AutoProperty Name="AudioUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Correct:bool" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Exercise:Exercise" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <AutoProperty Name="ExerciseId:long" CoveredStatements="1" TotalStatements="2" CoveragePercent="50">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Id:long" CoveredStatements="1" TotalStatements="2" CoveragePercent="50">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="ImageUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+      </Type>
+      <Type Name="Audio" CoveredStatements="12" TotalStatements="18" CoveragePercent="67">
+        <AutoProperty Name="Category:Category" CoveredStatements="1" TotalStatements="2" CoveragePercent="50">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="CategoryId:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="FragmentUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="ImageUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <Method Name="Equals(object):bool" CoveredStatements="5" TotalStatements="7" CoveragePercent="71" />
+        <Method Name="GetHashCode():int" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+      <Type Name="BaseEntity" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+        <AutoProperty Name="Id:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Name:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+      </Type>
+      <Type Name="Category" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+        <AutoProperty Name="CategoryType:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="ImageUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+      </Type>
+      <Type Name="Exercise" CoveredStatements="14" TotalStatements="21" CoveragePercent="67">
+        <AutoProperty Name="Answers:List&lt;Answer&gt;" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Category:Category" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <AutoProperty Name="CategoryId:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="QuestionUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="Type:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="VideoUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <Method Name="Equals(object):bool" CoveredStatements="4" TotalStatements="6" CoveragePercent="67" />
+        <Method Name="GetHashCode():int" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+      <Type Name="Video" CoveredStatements="9" TotalStatements="16" CoveragePercent="56">
+        <AutoProperty Name="Category:Category" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+          <PropertyGetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+          <PropertySetter CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
+        </AutoProperty>
+        <AutoProperty Name="CategoryId:long" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <AutoProperty Name="VideoUrl:string" CoveredStatements="2" TotalStatements="2" CoveragePercent="100">
+          <PropertyGetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+          <PropertySetter CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        </AutoProperty>
+        <Method Name="Equals(object):bool" CoveredStatements="5" TotalStatements="7" CoveragePercent="71" />
+        <Method Name="GetHashCode():int" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+      </Type>
+    </Namespace>
+    <Namespace Name="LiminoAPI.Data.Repositories" CoveredStatements="0" TotalStatements="53" CoveragePercent="0">
+      <Type Name="BaseRepository&lt;T&gt;" CoveredStatements="0" TotalStatements="27" CoveragePercent="0">
+        <Constructor Name="BaseRepository(AppDbContext)" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+        <Method Name="Add(T):long" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+        <Method Name="Delete(T):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+        <Method Name="GetAll():IEnumerable&lt;T&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="GetAllWhere(Func&lt;T,bool&gt;):IEnumerable&lt;T&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="GetById(long):T" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="Update(T):T" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+      </Type>
+      <Type Name="ExerciseRepository" CoveredStatements="0" TotalStatements="26" CoveragePercent="0">
+        <Constructor Name="ExerciseRepository(AppDbContext)" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="Add(Exercise):long" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+        <Method Name="Delete(Exercise):void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0" />
+        <Method Name="GetAll():IEnumerable&lt;Exercise&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="GetAllWhere(Func&lt;Exercise,bool&gt;):IEnumerable&lt;Exercise&gt;" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="GetById(long):Exercise" CoveredStatements="0" TotalStatements="3" CoveragePercent="0" />
+        <Method Name="Update(Exercise):Exercise" CoveredStatements="0" TotalStatements="5" CoveragePercent="0" />
+      </Type>
+    </Namespace>
+  </Project>
+  <Project Name="LiminoAPI.Tests" CoveredStatements="301" TotalStatements="303" CoveragePercent="99">
+    <Namespace Name="LiminoAPI.Tests" CoveredStatements="301" TotalStatements="301" CoveragePercent="100">
+      <Type Name="AudioControllerTest" CoveredStatements="84" TotalStatements="84" CoveragePercent="100">
+        <Constructor Name="AudioControllerTest()" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="AddNewAudioReturnsBadRequestOnNull():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="AddNewAudioReturnsBadRequestOnThrows():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="AddNewAudioReturnsNewAudioWithId():void" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+        <Method Name="DeleteAudioNotFoundReturnsBadRequest():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="DeleteAudioReturnsBadRequestOnThrows():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="DeleteAudioReturnsOk():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="GetAllAudiosByReturnsBadRequestOnThrows():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="GetAllAudiosByWithCategoryIdReturnsAllCategoriesForThatCategory():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="GetAllAudiosByWithoutCategoryIdReturnsAllCategories():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="GetAudioByIdReturnsAudio():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="GetAudioByIdReturnsBadRequestOnThrows():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="UpdateAudioNotFoundReturnsBadRequest():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100" />
+        <Method Name="UpdateAudioReturnsBadRequestOnThrows():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="UpdateAudioReturnsUpdatedAudio():void" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+      </Type>
+      <Type Name="CategoryControllerTest" CoveredStatements="52" TotalStatements="52" CoveragePercent="100">
+        <Constructor Name="CategoryControllerTest()" CoveredStatements="13" TotalStatements="13" CoveragePercent="100" />
+        <Method Name="Dispose():void" CoveredStatements="2" TotalStatements="2" CoveragePercent="100" />
+        <Method Name="GetCategoriesReturnsNothingForOtherCategories():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="GetCategoriesWithoutParamsReturnsAllCategories():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="GetCategoriesWithParameterAudioReturnsCorrectCategories():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="GetCategoriesWithParameterConversationReturnsCorrectCategories():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="GetCategoriesWithParameterVideoReturnsCorrectCategories():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+      </Type>
+      <Type Name="ExerciseControllerTest" CoveredStatements="86" TotalStatements="86" CoveragePercent="100">
+        <Constructor Name="ExerciseControllerTest()" CoveredStatements="9" TotalStatements="9" CoveragePercent="100" />
+        <Constructor Name="ExerciseControllerTest()" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="GetExerciseReturnsNothingForOtherCategories():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodDeleteExerciseDeletesVideoFromRepo():void" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+        <Method Name="MethodDeleteExerciseThrowsExceptionWhenInvalidId():void" CoveredStatements="9" TotalStatements="9" CoveragePercent="100" />
+        <Method Name="MethodGetExerciseByIdReturnsCorrectExercise():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="MethodGetExercisesReturnsAllExercises():void" CoveredStatements="5" TotalStatements="5" CoveragePercent="100" />
+        <Method Name="MethodPostExerciseAddsExerciseInRepo():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="MethodPostExerciseThrowsBadRequestWhenVideoIsNull():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="MethodPostExerciseThrowsExceptionWhenModelInvalid():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="MethodPutUpdatesExercise():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="ThrowsBadRequestWhenExerciseIdNotExists():void" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+      </Type>
+      <Type Name="VideosControllerTest" CoveredStatements="79" TotalStatements="79" CoveragePercent="100">
+        <Constructor Name="VideosControllerTest()" CoveredStatements="10" TotalStatements="10" CoveragePercent="100" />
+        <Method Name="MethodDeleteVideoDeletesVideoFromRepo():void" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+        <Method Name="MethodDeleteVideoThrowsExceptionWhenInvalidId():void" CoveredStatements="9" TotalStatements="9" CoveragePercent="100" />
+        <Method Name="MethodGetVideosWithCategoryIdReturnsAllVideosForThatCategory():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="MethodGetVideosWithoutParamsReturnsAllVideos():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="MethodGetVideoWithVideoIdReturnsVideo():void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100" />
+        <Method Name="MethodPostThrowsBadRequestWhenVideoIsNull():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="MethodPostThrowsExceptionWhenModelInvalid():void" CoveredStatements="6" TotalStatements="6" CoveragePercent="100" />
+        <Method Name="MethodPostVideoAddsVideoInRepo():void" CoveredStatements="10" TotalStatements="10" CoveragePercent="100" />
+        <Method Name="ThrowsBadRequestWhenVideoIdNotExists():void" CoveredStatements="7" TotalStatements="7" CoveragePercent="100" />
+      </Type>
+    </Namespace>
+    <Type Name="AutoGeneratedProgram" CoveredStatements="0" TotalStatements="2" CoveragePercent="0">
+      <Method Name="Main(string[]):void" CoveredStatements="0" TotalStatements="2" CoveragePercent="0" />
+    </Type>
+  </Project>
+</Root>

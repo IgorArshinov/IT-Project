@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.business.tests\videoservicetest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using LiminoAPI.Business.Services;
+using LiminoAPI.Data.Models;
+using LiminoAPI.Data.Repositories.Interfaces;
+using Moq;
+using Xunit;
+
+namespace LiminoAPI.Business.Tests
+{
+    public class VideoServiceTest
+    {
+        private readonly Mock&lt;IBaseRepository&lt;Video&gt;&gt; _repository;
+        private readonly VideoService _service;
+
+        private readonly IEnumerable&lt;Video&gt; _videos;
+
+        private readonly Video _video1 = new Video
+        {
+            CategoryId = 1,
+            Id = 1,
+            Name = &quot;Video van een banaan&quot;,
+            VideoUrl = &quot;VideoUrl1&quot;
+        };
+
+        private readonly Video _video2 = new Video
+        {
+            CategoryId = 1,
+            Id = 4,
+            Name = &quot;Video van een appel&quot;,
+            VideoUrl = &quot;VideoUrl2&quot;
+        };
+
+        private readonly Video _video3 = new Video
+        {
+            CategoryId = 2,
+            Id = 2,
+            Name = &quot;Video van een bus&quot;,
+            VideoUrl = &quot;VideoUrl2&quot;
+        };
+
+        private readonly Video _video4 = new Video
+        {
+            CategoryId = 3,
+            Id = 3,
+            Name = &quot;Video van een glas water&quot;,
+            VideoUrl = &quot;VideoUrl3&quot;
+        };
+
+        private readonly IEnumerable&lt;VideoDTO&gt; _videoDTOs;
+
+        private readonly VideoDTO _videoDto1 = new VideoDTO
+        {
+            CategoryId = 1,
+            Id = 1,
+            Name = &quot;Video van een banaan&quot;,
+            VideoUrl = &quot;VideoUrl1&quot;
+        };
+
+        private readonly VideoDTO _videoDto2 = new VideoDTO
+        {
+            CategoryId = 1,
+            Id = 4,
+            Name = &quot;Video van een appel&quot;,
+            VideoUrl = &quot;VideoUrl2&quot;
+        };
+
+        private readonly VideoDTO _videoDto3 = new VideoDTO
+        {
+            CategoryId = 2,
+            Id = 2,
+            Name = &quot;Video van een bus&quot;,
+            VideoUrl = &quot;VideoUrl2&quot;
+        };
+
+        private readonly VideoDTO _videoDto4 = new VideoDTO
+        {
+            CategoryId = 3,
+            Id = 3,
+            Name = &quot;Video van een glas water&quot;,
+            VideoUrl = &quot;VideoUrl3&quot;
+        };
+
+        public VideoServiceTest()
+        {
+            _repository = new Mock&lt;IBaseRepository&lt;Video&gt;&gt;();
+            _service = new VideoService(_repository.Object);
+
+            _videos = new List&lt;Video&gt; {_video1, _video2, _video3, _video4};
+            _videoDTOs = new List&lt;VideoDTO&gt; {_videoDto1, _videoDto2, _videoDto3, _videoDto4};
+        }
+
+        [Fact]
+        private void MethodGetAllReturnsListOfVideoDto()
+        {
+            //Setup repo mock
+            _repository.Setup(repo =&gt; repo.GetAll()).Returns(_videos);
+
+            //check if results are equal
+            var actionResult = _service.GetAll();
+            Assert.Equal(_videoDTOs, actionResult);
+        }
+
+        [Fact]
+        private void MethodGetAllByCategoryIdReturnsListOfVideoDto()
+        {
+            //Setup repo mock
+            _repository.Setup(repo =&gt; repo.GetAllWhere(It.IsAny&lt;Func&lt;Video, bool&gt;&gt;())).Returns(_videos);
+
+            //check if results are equal
+            var actionResult = _service.GetAllByCategoryId(1);
+            Assert.Equal(_videoDTOs, actionResult);
+        }
+
+        [Fact]
+        private void MethodGetByIdReturnsCorrectVideo()
+        {
+            //Setup repo mock
+            _repository.Setup(repo =&gt; repo.GetById(1)).Returns(_video1);
+
+            //check if results are equal
+            var actionResult = _service.GetById(1);
+            Assert.Equal(_videoDto1, actionResult);
+        }
+
+        [Fact]
+        private void MethodGetByIdThrowsExceptionWhenIdIsInvalid()
+        {
+            //Setup repo mock
+            _repository.Setup(repo =&gt; repo.GetById(1)).Returns(_video1);
+
+            Assert.Throws&lt;Exception&gt;(() =&gt; _service.GetById(5555));
+        }
+
+        [Fact]
+        private void MethodAddReturnsCorrectResponse()
+        {
+            //Setup repo mock
+            _repository.Setup(repo =&gt; repo.Add(_video1));
+
+            //check correct response
+            _service.Add(_videoDto1);
+
+            _repository.Verify(repo =&gt; repo.Add(_video1), Times.Once);
+        }
+
+        [Fact]
+        private void MethodDeleteThrowsExceptionWhenInvalid()
+        {
+            _repository.Setup(repo =&gt; repo.Delete(_video1)).Throws(new Exception());
+
+            Assert.Throws&lt;Exception&gt;(() =&gt; _service.Delete(_videoDto1));
+        }
+
+        [Fact]
+        private void MethodDeleteCallsDeleteInRepo()
+        {
+            //Setup repo
+            _repository.Setup(repo =&gt; repo.Delete(_video1));
+
+            //check Delete has called in repo
+            _service.Delete(_videoDto1);
+            _repository.Verify(repo =&gt; repo.Delete(_video1), Times.Once);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[18,9,24,11,1],[26,9,32,11,1],[34,9,40,11,1],[42,9,48,11,1],[52,9,58,11,1],[60,9,66,11,1],[68,9,74,11,1],[76,9,82,11,1],[84,9,84,34,1],[85,9,85,10,1],[86,13,86,62,1],[87,13,87,61,1],[89,13,89,76,1],[90,13,90,94,1],[91,9,91,10,1],[95,9,95,10,1],[97,13,97,71,1],[100,13,100,50,1],[101,13,101,52,1],[102,9,102,10,1],[106,9,106,10,1],[108,13,108,105,1],[111,13,111,63,1],[112,13,112,52,1],[113,9,113,10,1],[117,9,117,10,1],[119,13,119,73,1],[122,13,122,52,1],[123,13,123,52,1],[124,9,124,10,1],[128,9,128,10,1],[130,13,130,73,1],[132,13,132,44,1],[132,44,132,66,1],[132,66,132,68,1],[132,13,132,68,1],[133,9,133,10,1],[137,9,137,10,1],[139,13,139,58,1],[142,13,142,38,1],[144,13,144,71,1],[145,9,145,10,1],[149,9,149,10,1],[150,13,150,85,1],[152,13,152,44,1],[152,44,152,71,1],[152,71,152,73,1],[152,13,152,73,1],[153,9,153,10,1],[157,9,157,10,1],[159,13,159,61,1],[162,13,162,41,1],[163,13,163,74,1],[164,9,164,10,1]]);
+    </script>
+  </body>
+</html>

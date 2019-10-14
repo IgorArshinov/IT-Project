@@ -1,0 +1,35 @@
+<div [formGroup]="form" class="aspects-container">
+  <h3>Eigenschappen</h3>
+  <h5>THEMA</h5>
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="categories">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <h5>NIVEAU</h5>
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Level</mat-label>
+      <mat-select formControlName="level">
+        <mat-option *ngFor="let level of levels" [value]="level">
+          {{ level }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <h5>NAAM</h5>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput type="text" id="name" formControlName="name" />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button (click)="click()">Werkblad opslaan</button>
+  </div>
+</div>

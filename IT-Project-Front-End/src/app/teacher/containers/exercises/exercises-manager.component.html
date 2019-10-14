@@ -1,0 +1,26 @@
+<app-data-manager
+  [titleConfiguration]="titleConfiguration"
+  [data$]="exercises$ | async"
+  (filter)="filter($event)"
+  (createNew)="popNewVideoForm()"
+  [template]="rowDefinition"
+  [showCategoryFilter]="true"
+  (categoryFilter)="categoryFilter($event)"
+>
+</app-data-manager>
+<app-nav-home [mode]="navHomeType"></app-nav-home>
+
+<ng-template #rowDefinition let-item="item"  >
+  <td *ngIf="selectable" ><mat-checkbox (change)="emitSelect($event, item)"></mat-checkbox>  </td>
+  <td>{{item.title}}</td>
+  <td>{{item.type}}</td>
+  <td>{{item.categoryName}}</td>
+  <td>{{item.answers.length}} </td>
+  <td *ngIf="!selectable">
+    <div [ngStyle]="{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}">
+      <button mat-button (click)="deleteItem(item)">
+        <fa-icon [icon]="trashIcon"></fa-icon>
+      </button>
+    </div>
+  </td>
+</ng-template>

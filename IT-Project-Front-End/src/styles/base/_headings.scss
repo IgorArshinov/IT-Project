@@ -1,0 +1,59 @@
+// ----------------------------------------------------------------------
+// Headings
+// ----------------------------------------------------------------------
+
+h1 {
+  font-family: $header-1-font;
+  font-weight: $header-1-font-weight;
+  font-size: $header-1-font-size;
+  line-height: $header-1-line-height;
+  color: $header-1-color;
+
+  strong {
+    font-weight: $header-1-strong-font-weight;
+  }
+}
+
+h2 {
+  font-family: $header-2-font;
+  font-weight: $header-2-font-weight;
+  font-size: $header-2-font-size;
+  line-height: $header-2-line-height;
+  color: $header-2-color;
+
+  strong {
+    font-weight: $header-2-strong-font-weight;
+  }
+}
+
+h3 {
+  font-family: $header-3-font;
+  font-weight: $header-3-font-weight;
+  font-size: $header-3-font-size;
+  line-height: $header-3-line-height;
+  color: $header-3-color;
+}
+
+h4 {
+  font-family: $header-4-font;
+  font-weight: $header-4-font-weight;
+  font-size: $header-4-font-size;
+  line-height: $header-4-line-height;
+  color: $header-4-color;
+}
+
+h5 {
+  font-family: $header-5-font;
+  font-weight: $header-5-font-weight;
+  font-size: $header-5-font-size;
+  line-height: $header-5-line-height;
+  color: $header-5-color;
+}
+
+h6 {
+  font-family: $header-6-font;
+  font-weight: $header-6-font-weight;
+  font-size: $header-6-font-size;
+  line-height: $header-6-line-height;
+  color: $header-6-color;
+}

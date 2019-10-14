@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>d:\art\visual studio\projects\switch2it\it-project\liminoapi.data\models\exercise.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LiminoAPI.Data.Models
+{
+    public class Exercise : BaseEntity
+    {
+        public string Type { get; set; }
+        [ForeignKey(&quot;CategoryId&quot;)]
+        public Category Category { get; set; }
+        
+        public long CategoryId { get; set; }
+        public string QuestionUrl { get; set; }
+        public string VideoUrl { get; set; }
+        public List&lt;Answer&gt; Answers { get; set; }
+        
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Exercise exercise))
+            {
+                return false;
+            }
+
+            return QuestionUrl.Equals(exercise.QuestionUrl);
+        }
+
+        public override int GetHashCode()
+        {
+            return QuestionUrl.GetHashCode();
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,30,8,34,1],[8,35,8,39,1],[10,36,10,40,0],[10,41,10,45,0],[12,34,12,38,1],[12,39,12,43,1],[13,37,13,41,1],[13,42,13,46,1],[14,34,14,38,1],[14,39,14,43,1],[15,39,15,43,1],[15,44,15,48,1],[18,9,18,10,1],[19,13,19,45,1],[20,13,20,14,0],[21,17,21,30,0],[24,13,24,61,1],[25,9,25,10,1],[28,9,28,10,0],[29,13,29,46,0],[30,9,30,10,0]]);
+    </script>
+  </body>
+</html>

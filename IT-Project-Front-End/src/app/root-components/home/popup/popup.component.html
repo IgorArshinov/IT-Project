@@ -1,0 +1,34 @@
+<div [ngStyle]="{width: '25em', height: '25em'}">
+  <div [ngStyle]="{
+  display:'grid',
+  gridTemplateColumns: 'auto auto auto',
+  height: '100%'
+}" >
+    <div [ngStyle]="{gridColumn: 'span 3'}">
+      <input type="text" [ngStyle]="{ width: '100%', height: '100%', textAlign: 'center', fontSize: '2em' }" [value]="pincode"/>
+    </div>
+    <div *ngFor="let n of numbers">
+      <button
+        mat-stroked-button
+        [disabled]="disableNumbers"
+        (click)="addToCode(n)"
+        [ngStyle]="{ width: '100%', height: '100%' }"
+      >{{n}}</button>
+    </div>
+    <div [ngStyle]="{gridColumn:'2'}">
+      <button
+        mat-stroked-button
+        [disabled]="disableNumbers"
+        (click)="addToCode(0)"
+        [ngStyle]="{ width: '100%', height: '100%' }"
+      >0</button>
+    </div>
+    <div [ngStyle]="{gridColumn:'3'}">
+      <button mat-stroked-button [ngStyle]="{ width: '100%', height: '100%' }" (click)="removeFromCode()">
+        <img src="/assets/images/outline-backspace-24px.svg" />
+      </button>
+    </div>
+
+
+  </div>
+</div>

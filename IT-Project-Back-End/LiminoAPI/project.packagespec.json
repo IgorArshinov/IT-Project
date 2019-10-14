@@ -1,0 +1,35 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\vince\\RiderProjects\\limino-switch2-api\\LiminoAPI\\LiminoAPI.csproj",
+    "projectName": "LiminoAPI",
+    "projectPath": "C:\\Users\\vince\\RiderProjects\\limino-switch2-api\\LiminoAPI\\LiminoAPI.csproj",
+    "outputPath": "C:\\Users\\vince\\RiderProjects\\limino-switch2-api\\LiminoAPI\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {
+          "C:\\Users\\vince\\RiderProjects\\limino-switch2-api\\LiminoAPI.Business\\LiminoAPI.Business.csproj": {
+            "projectPath": "C:\\Users\\vince\\RiderProjects\\limino-switch2-api\\LiminoAPI.Business\\LiminoAPI.Business.csproj"
+          },
+          "C:\\Users\\vince\\RiderProjects\\limino-switch2-api\\LiminoAPI.Data\\LiminoAPI.Data.csproj": {
+            "projectPath": "C:\\Users\\vince\\RiderProjects\\limino-switch2-api\\LiminoAPI.Data\\LiminoAPI.Data.csproj"
+          }
+        }
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "Microsoft.AspNetCore.App": {
+          "target": "Package",
+          "version": "(, )"
+        }
+      }
+    }
+  }
+}

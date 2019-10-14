@@ -1,0 +1,30 @@
+<app-data-manager
+  [titleConfiguration]="titleConfiguration"
+  [data$]="series$ | async"
+  (filter)="filter($event)"
+  (createNew)="popNewVideoForm()"
+  [template]="rowDefinition"
+  [showNiveauFilter]="true"
+  (niveauFilter)="niveauFilter($event)"
+>
+</app-data-manager>
+<app-nav-home [mode]="navHomeType"></app-nav-home>
+
+<ng-template #rowDefinition let-item="item">
+  <td>{{ item.name }}</td>
+  <td>{{ item.code }}</td>
+  <td>{{ item.exercises.length }}</td>
+  <td>{{ item.level }}</td>
+  <td>
+    <div
+      [ngStyle]="{
+        display: 'flex',
+        justifyContent: 'space-between'
+      }"
+    >
+      <button mat-raised-button (click)="removeElement(item)">
+        <fa-icon [icon]="trash"></fa-icon>
+      </button>
+    </div>
+  </td>
+</ng-template>
